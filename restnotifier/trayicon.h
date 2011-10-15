@@ -12,10 +12,16 @@ class TrayIcon : public QSystemTrayIcon
 {
     Q_OBJECT
 
+// PRIVATE
     QSharedPointer<QIcon> icon;
     QSharedPointer<QMenu> menu;
     QSharedPointer<QSettings> settings;
 
+private slots:
+    void showSettings();
+
+
+// PUBLIC
 public:
     explicit TrayIcon(QObject *parent = 0);
 

@@ -1,12 +1,20 @@
 SOURCES += \
     main.cpp \
-    trayicon.cpp
+    trayicon.cpp \
+    settingsdialog.cpp
 
 HEADERS += \
-    trayicon.h
+    trayicon.h \
+    settingsdialog.h
 
 RESOURCES += \
     icons.qrc
+
+FORMS += \
+    settingsdialog.ui
+
+
+
 
 
 
