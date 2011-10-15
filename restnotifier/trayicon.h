@@ -5,8 +5,7 @@
 #include <QSharedPointer>
 #include <QIcon>
 #include <QMenu>
-
-#include "settings.h"
+#include <QSettings>
 
 
 class TrayIcon : public QSystemTrayIcon
@@ -15,7 +14,7 @@ class TrayIcon : public QSystemTrayIcon
 
     QSharedPointer<QIcon> icon;
     QSharedPointer<QMenu> menu;
-    QSharedPointer<Settings> settings;
+    QSharedPointer<QSettings> settings;
 
 public:
     explicit TrayIcon(QObject *parent = 0);

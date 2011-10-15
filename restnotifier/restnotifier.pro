@@ -1,14 +1,14 @@
 SOURCES += \
     main.cpp \
-    trayicon.cpp \
-    settings.cpp
+    trayicon.cpp
 
 HEADERS += \
-    trayicon.h \
-    settings.h
+    trayicon.h
 
 RESOURCES += \
     icons.qrc
+
+
 
 
 
