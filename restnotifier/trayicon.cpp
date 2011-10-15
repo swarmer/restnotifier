@@ -1,4 +1,5 @@
 #include <QPointer>
+#include <QStyle>
 
 #include "trayicon.h"
 #include "settingsdialog.h"
@@ -11,9 +12,11 @@ TrayIcon::TrayIcon(QObject *parent) :
     menu = QSharedPointer<QMenu>(new QMenu);
     settings = QSharedPointer<QSettings>(new QSettings);
     setIcon(*icon);
-    // TODO: add icons
+    QStyle *style = QApplication::style();
+    QIcon quitIcon = style->standardIcon(QStyle::SP_DialogCloseButton);
     menu->addAction(tr("Settings"), this, SLOT(showSettings()));
-    menu->addAction(tr("Quit"), this, SIGNAL(quitScheduled()));
+    menu->addSeparator();
+    menu->addAction(quitIcon, tr("Quit"), this, SIGNAL(quitScheduled()));
     setContextMenu(menu.data());
 }
 
