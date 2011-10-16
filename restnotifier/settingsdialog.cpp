@@ -8,6 +8,7 @@ SettingsDialog::SettingsDialog(QSharedPointer<QSettings> p_settings,
                                QWidget *parent) :
     QDialog(parent)
 {
+    // window setup
     Qt::WindowFlags flags = windowFlags();
     setAttribute(Qt::WA_QuitOnClose, false);
     setWindowFlags(flags & ~Qt::WindowContextHelpButtonHint);
@@ -16,6 +17,8 @@ SettingsDialog::SettingsDialog(QSharedPointer<QSettings> p_settings,
     ui_settingsDialog->setupUi(this);
     connect(ui_settingsDialog->dialogButtonBox, SIGNAL(clicked(QAbstractButton*)),
             SLOT(buttonClicked(QAbstractButton*)));
+
+    // set initial settings
     int interval; //minutes
     bool ok;
     interval = settings->value("interval", 60).toInt(&ok);
