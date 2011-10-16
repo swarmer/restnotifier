@@ -25,7 +25,7 @@ TrayIcon::TrayIcon(QObject *parent) :
     // setup timer
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), SLOT(showRestMessage()));
-    timer->start(getIntervalMsecs()); //minutes to msecs
+    timer->start(getIntervalMsecs());
 }
 
 void TrayIcon::showSettings()
