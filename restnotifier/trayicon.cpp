@@ -1,5 +1,6 @@
 #include <QPointer>
 #include <QStyle>
+#include <QMessageBox>
 
 #include "trayicon.h"
 #include "settingsdialog.h"
@@ -23,13 +24,8 @@ TrayIcon::TrayIcon(QObject *parent) :
 
     // setup timer
     timer = new QTimer(this);
-    int interval; //minutes
-    bool ok;
-    interval = settings->value("interval", 60).toInt(&ok);
-    if (!ok)
-        interval = 60;
     connect(timer, SIGNAL(timeout()), SLOT(showRestMessage()));
-    timer->start(interval * 60000); //minutes to msecs
+    timer->start(getIntervalMsecs()); //minutes to msecs
 }
 
 void TrayIcon::showSettings()
@@ -40,12 +36,7 @@ void TrayIcon::showSettings()
     delete settingsDialog;
 
     // reset timer if timeout has changed
-    int interval; //minutes
-    bool ok;
-    interval = settings->value("interval", 60).toInt(&ok);
-    if (!ok)
-        interval = 60;
-    interval *= 60000; // to msec
+    int interval = getIntervalMsecs();
     if (timer->interval() != interval)
     {
         timer->stop();
@@ -55,6 +46,34 @@ void TrayIcon::showSettings()
 
 void TrayIcon::showRestMessage()
 {
+    timer->stop();
     QString message = settings->value("message", "").toString();
-    showMessage("Restnotifier", message, Information);
+    MessageType mt = (MessageType)(settings->value("m_type", 0).toInt());
+    switch (mt)
+    {
+    case MT_TRAY:
+        showMessage("Restnotifier", message, Information);
+        break;
+    case MT_DIALOG:
+        QPointer<QMessageBox> mbox(new QMessageBox);
+        mbox->addButton(QMessageBox::Ok);
+        mbox->setWindowTitle("Restnotifier");
+        mbox->setText(message);
+        mbox->setIcon(QMessageBox::Information);
+        mbox->activateWindow();
+        mbox->exec();
+        delete mbox;
+        break;
+    }
+    timer->start(getIntervalMsecs());
+}
+
+int TrayIcon::getIntervalMsecs()
+{
+    bool ok;
+    int interval = settings->value("interval", 60).toInt(&ok);
+    if (!ok)
+        interval = 60;
+    interval *= 60000; // to msec
+    return interval;
 }

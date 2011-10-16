@@ -9,6 +9,12 @@
 #include "ui_settingsdialog.h"
 
 
+enum MessageType
+{
+    MT_TRAY = 0,
+    MT_DIALOG = 1
+};
+
 class SettingsDialog : public QDialog
 {
     Q_OBJECT

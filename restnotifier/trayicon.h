@@ -19,6 +19,8 @@ class TrayIcon : public QSystemTrayIcon
     QSharedPointer<QSettings> settings;
     QTimer *timer;
 
+    int getIntervalMsecs();
+
 private slots:
     void showSettings();
     void showRestMessage();

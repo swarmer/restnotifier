@@ -8,6 +8,7 @@ int main(int argc, char **argv)
 {
     QApplication *app = new QApplication(argc, argv);
     QApplication::setOrganizationName("Restnotifier");
+    app->setQuitOnLastWindowClosed(false);
     TrayIcon *trayIcon = new TrayIcon();
     trayIcon->show();
     QObject::connect(trayIcon, SIGNAL(quitScheduled()), app, SLOT(quit()));

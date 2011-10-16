@@ -6,28 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>369</width>
-    <height>125</height>
+    <width>354</width>
+    <height>211</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Settings</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="0">
-    <widget class="QDialogButtonBox" name="dialogButtonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-     <property name="centerButtons">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
+   <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -42,26 +29,12 @@
       <bool>false</bool>
      </property>
      <layout class="QFormLayout" name="formLayout">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::ExpandingFieldsGrow</enum>
+      </property>
       <property name="horizontalSpacing">
        <number>10</number>
       </property>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Message</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="messageLine">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
@@ -71,6 +44,9 @@
       </item>
       <item row="0" column="1">
        <widget class="QTimeEdit" name="intervalTime">
+        <property name="accelerated">
+         <bool>true</bool>
+        </property>
         <property name="maximumTime">
          <time>
           <hour>23</hour>
@@ -96,6 +72,46 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Message</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="messageLine">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Message type</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QRadioButton" name="trayRadio">
+        <property name="text">
+         <string>System tray message</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="dialogRadio">
+        <property name="text">
+         <string>Dialog box</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -112,11 +128,26 @@
      </property>
     </spacer>
    </item>
+   <item row="3" column="0">
+    <widget class="QDialogButtonBox" name="dialogButtonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
   <tabstop>intervalTime</tabstop>
   <tabstop>messageLine</tabstop>
+  <tabstop>trayRadio</tabstop>
+  <tabstop>dialogRadio</tabstop>
   <tabstop>dialogButtonBox</tabstop>
  </tabstops>
  <resources/>
@@ -128,8 +159,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>146</x>
-     <y>112</y>
+     <x>150</x>
+     <y>206</y>
     </hint>
     <hint type="destinationlabel">
      <x>289</x>
@@ -144,11 +175,11 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>107</y>
+     <x>252</x>
+     <y>206</y>
     </hint>
     <hint type="destinationlabel">
-     <x>366</x>
+     <x>353</x>
      <y>17</y>
     </hint>
    </hints>

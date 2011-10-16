@@ -10,7 +10,6 @@ SettingsDialog::SettingsDialog(QSharedPointer<QSettings> p_settings,
 {
     // window setup
     Qt::WindowFlags flags = windowFlags();
-    setAttribute(Qt::WA_QuitOnClose, false);
     setWindowFlags(flags & ~Qt::WindowContextHelpButtonHint);
     settings = p_settings;
     ui_settingsDialog = QSharedPointer<Ui::SettingsDialog>(new Ui::SettingsDialog);
@@ -18,7 +17,7 @@ SettingsDialog::SettingsDialog(QSharedPointer<QSettings> p_settings,
     connect(ui_settingsDialog->dialogButtonBox, SIGNAL(clicked(QAbstractButton*)),
             SLOT(buttonClicked(QAbstractButton*)));
 
-    // set initial settings
+    // set initial interval
     int interval; //minutes
     bool ok;
     interval = settings->value("interval", 60).toInt(&ok);
@@ -29,8 +28,23 @@ SettingsDialog::SettingsDialog(QSharedPointer<QSettings> p_settings,
     minutes = interval % 60;
     QTime time(hours, minutes);
     ui_settingsDialog->intervalTime->setTime(time);
-    QString message = settings->value("message", QString()).toString();
+    // ... message
+    QString message = settings->value("message",
+                                      tr("It's time to rest")).toString();
     ui_settingsDialog->messageLine->setText(message);
+    // ... and message type
+    MessageType mt = (MessageType)(settings->value("m_type", 0).toInt(&ok));
+    if (!ok)
+        mt = MT_TRAY;
+    switch (mt)
+    {
+    case MT_TRAY:
+        ui_settingsDialog->trayRadio->toggle();
+        break;
+    case MT_DIALOG:
+        ui_settingsDialog->dialogRadio->toggle();
+        break;
+    }
 }
 
 void SettingsDialog::buttonClicked(QAbstractButton *button)
@@ -51,4 +65,10 @@ void SettingsDialog::saveSettings()
     interval = (time.hour() * 60) + time.minute();
     settings->setValue("interval", interval);
     settings->setValue("message", ui_settingsDialog->messageLine->text());
+    int m_type = 0;
+    if (ui_settingsDialog->trayRadio->isChecked())
+        m_type = (int)MT_TRAY;
+    else if (ui_settingsDialog->dialogRadio->isChecked())
+        m_type = (int)MT_DIALOG;
+    settings->setValue("m_type", m_type);
 }
