@@ -24,9 +24,8 @@ TrayIcon::TrayIcon(QObject *parent) :
     interval = settings->value("interval", 60).toInt(&ok);
     if (!ok)
         interval = 60;
-    timer->setInterval(interval * 60000); //minutes to msecs
     connect(timer, SIGNAL(timeout()), SLOT(showRestMessage()));
-    timer->start();
+    timer->start(interval * 60000); //minutes to msecs
 }
 
 void TrayIcon::showSettings()
@@ -34,7 +33,17 @@ void TrayIcon::showSettings()
     QPointer<SettingsDialog> settingsDialog(new SettingsDialog(settings));
     settingsDialog->exec();
     delete settingsDialog;
-    // TODO: check timeout
+    int interval; //minutes
+    bool ok;
+    interval = settings->value("interval", 60).toInt(&ok);
+    if (!ok)
+        interval = 60;
+    interval *= 60000; // to msec
+    if (timer->interval() != interval)
+    {
+        timer->stop();
+        timer->start(interval);
+    }
 }
 
 void TrayIcon::showRestMessage()
