@@ -3,4 +3,5 @@
 *.pro.user
 build_debug
 build_release
+.directory
 
