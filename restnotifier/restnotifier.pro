@@ -13,18 +13,5 @@ RESOURCES += \
 FORMS += \
     settingsdialog.ui
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+TRANSLATIONS = \
+    restnotifier_ru.ts
