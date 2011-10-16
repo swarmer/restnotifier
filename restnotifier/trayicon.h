@@ -6,6 +6,7 @@
 #include <QIcon>
 #include <QMenu>
 #include <QSettings>
+#include <QTimer>
 
 
 class TrayIcon : public QSystemTrayIcon
@@ -16,9 +17,11 @@ class TrayIcon : public QSystemTrayIcon
     QSharedPointer<QIcon> icon;
     QSharedPointer<QMenu> menu;
     QSharedPointer<QSettings> settings;
+    QTimer *timer;
 
 private slots:
     void showSettings();
+    void showRestMessage();
 
 
 // PUBLIC
