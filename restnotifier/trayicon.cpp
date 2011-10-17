@@ -11,7 +11,6 @@ TrayIcon::TrayIcon(QObject *parent) :
 {
     icon = QSharedPointer<QIcon>(new QIcon(":/cloud.png"));
     menu = QSharedPointer<QMenu>(new QMenu);
-    settings = QSharedPointer<QSettings>(new QSettings);
 
     // setup context menu
     setIcon(*icon);
@@ -31,7 +30,7 @@ TrayIcon::TrayIcon(QObject *parent) :
 void TrayIcon::showSettings()
 {
     // show dialog
-    QPointer<SettingsDialog> settingsDialog(new SettingsDialog(settings));
+    QPointer<SettingsDialog> settingsDialog(new SettingsDialog);
     settingsDialog->exec();
     delete settingsDialog;
 
@@ -47,8 +46,8 @@ void TrayIcon::showSettings()
 void TrayIcon::showRestMessage()
 {
     timer->stop();
-    QString message = settings->value("message", "").toString();
-    MessageType mt = (MessageType)(settings->value("m_type", 0).toInt());
+    QString message = settings.value("message", "").toString();
+    MessageType mt = (MessageType)(settings.value("m_type", 0).toInt());
     switch (mt)
     {
     case MT_TRAY:
@@ -68,10 +67,10 @@ void TrayIcon::showRestMessage()
     timer->start(getIntervalMsecs());
 }
 
-int TrayIcon::getIntervalMsecs()
+int TrayIcon::getIntervalMsecs() const
 {
     bool ok;
-    int interval = settings->value("interval", 60).toInt(&ok);
+    int interval = settings.value("interval", 60).toInt(&ok);
     if (!ok)
         interval = 60;
     interval *= 60000; // to msec

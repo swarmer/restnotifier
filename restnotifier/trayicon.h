@@ -16,10 +16,10 @@ class TrayIcon : public QSystemTrayIcon
 // PRIVATE
     QSharedPointer<QIcon> icon;
     QSharedPointer<QMenu> menu;
-    QSharedPointer<QSettings> settings;
+    QSettings settings;
     QTimer *timer;
 
-    int getIntervalMsecs();
+    int getIntervalMsecs() const;
 
 private slots:
     void showSettings();

@@ -20,9 +20,10 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 // PRIVATE
-    QSharedPointer<QSettings> settings;
+    QSettings settings;
     QSharedPointer<Ui::SettingsDialog> ui_settingsDialog;
 
+    void loadSettings();
     void saveSettings();
 
 private slots:
@@ -31,7 +32,7 @@ private slots:
 
 // PUBLIC
 public:
-    explicit SettingsDialog(QSharedPointer<QSettings> p_settings, QWidget *parent = 0);
+    explicit SettingsDialog(QWidget *parent = 0);
 };
 
 #endif // SETTINGSDIALOG_H
