@@ -44,7 +44,22 @@
         <translation>Диалоговое окно</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="33"/>
+        <location filename="settingsdialog.ui" line="121"/>
+        <source>Language</source>
+        <translation>Язык</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="128"/>
+        <source>English</source>
+        <translation>English</translation>
+    </message>
+    <message utf8="true">
+        <location filename="settingsdialog.ui" line="133"/>
+        <source>Русский</source>
+        <translation>Русский</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.cpp" line="35"/>
         <source>It&apos;s time to rest</source>
         <translation>Время отдохнуть</translation>
     </message>

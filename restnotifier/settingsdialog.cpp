@@ -1,5 +1,6 @@
 #include <QVariant>
 #include <QTime>
+#include <QLocale>
 
 #include "settingsdialog.h"
 
@@ -28,11 +29,13 @@ SettingsDialog::SettingsDialog(QSharedPointer<QSettings> p_settings,
     minutes = interval % 60;
     QTime time(hours, minutes);
     ui_settingsDialog->intervalTime->setTime(time);
-    // ... message
+
+    // set message
     QString message = settings->value("message",
                                       tr("It's time to rest")).toString();
     ui_settingsDialog->messageLine->setText(message);
-    // ... and message type
+
+    // set message type
     MessageType mt = (MessageType)(settings->value("m_type", 0).toInt(&ok));
     if (!ok)
         mt = MT_TRAY;
@@ -45,6 +48,18 @@ SettingsDialog::SettingsDialog(QSharedPointer<QSettings> p_settings,
         ui_settingsDialog->dialogRadio->toggle();
         break;
     }
+
+    // set language
+    QString language;
+    if (settings->contains("lang"))
+        language = settings->value("lang").toString();
+    else
+        language = QLocale::languageToString(QLocale().language());
+    QComboBox *langBox = ui_settingsDialog->languageComboBox;
+    if (language == "ru")
+        langBox->setCurrentIndex(langBox->findText(QString::fromUtf8("Русский")));
+    else
+        langBox->setCurrentIndex(langBox->findText("English"));
 }
 
 void SettingsDialog::buttonClicked(QAbstractButton *button)
@@ -60,15 +75,29 @@ void SettingsDialog::buttonClicked(QAbstractButton *button)
 
 void SettingsDialog::saveSettings()
 {
+    // save interval
     int interval; //minutes
     QTime time = ui_settingsDialog->intervalTime->time();
     interval = (time.hour() * 60) + time.minute();
     settings->setValue("interval", interval);
+
+    // save message
     settings->setValue("message", ui_settingsDialog->messageLine->text());
+
+    // save message type
     int m_type = 0;
     if (ui_settingsDialog->trayRadio->isChecked())
         m_type = (int)MT_TRAY;
     else if (ui_settingsDialog->dialogRadio->isChecked())
         m_type = (int)MT_DIALOG;
     settings->setValue("m_type", m_type);
+
+    // save language
+    if (ui_settingsDialog->languageComboBox->currentText() ==
+            QString::fromUtf8("Русский"))
+    {
+        settings->setValue("lang", "ru");
+    }
+    else
+        settings->setValue("lang", "en");
 }
