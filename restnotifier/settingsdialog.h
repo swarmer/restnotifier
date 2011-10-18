@@ -24,10 +24,9 @@ class SettingsDialog : public QDialog
     QSharedPointer<Ui::SettingsDialog> ui_settingsDialog;
 
     void loadSettings();
-    void saveSettings();
 
 private slots:
-    void buttonClicked(QAbstractButton *button);
+    void saveSettings();
 
 
 // PUBLIC

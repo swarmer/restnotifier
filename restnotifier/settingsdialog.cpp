@@ -1,6 +1,7 @@
 #include <QVariant>
 #include <QTime>
 #include <QLocale>
+#include <QPushButton>
 
 #include "settingsdialog.h"
 
@@ -13,20 +14,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     setWindowFlags(flags & ~Qt::WindowContextHelpButtonHint);
     ui_settingsDialog = QSharedPointer<Ui::SettingsDialog>(new Ui::SettingsDialog);
     ui_settingsDialog->setupUi(this);
-    connect(ui_settingsDialog->dialogButtonBox, SIGNAL(clicked(QAbstractButton*)),
-            SLOT(buttonClicked(QAbstractButton*)));
+    connect(this, SIGNAL(accepted()), SLOT(saveSettings()));
     loadSettings();
-}
-
-void SettingsDialog::buttonClicked(QAbstractButton *button)
-{
-    QDialogButtonBox::ButtonRole role =
-            ui_settingsDialog->dialogButtonBox->buttonRole(button);
-    if ((role == QDialogButtonBox::ApplyRole) ||
-        (role == QDialogButtonBox::AcceptRole))
-    {
-        saveSettings();
-    }
 }
 
 void SettingsDialog::loadSettings()
