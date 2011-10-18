@@ -1,7 +1,6 @@
 #include <QVariant>
 #include <QTime>
 #include <QLocale>
-#include <QPushButton>
 
 #include "settingsdialog.h"
 

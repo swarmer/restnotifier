@@ -4,7 +4,6 @@
 #include <QDialog>
 #include <QSettings>
 #include <QSharedPointer>
-#include <QAbstractButton>
 
 #include "ui_settingsdialog.h"
 

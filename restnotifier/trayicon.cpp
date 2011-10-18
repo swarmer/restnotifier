@@ -1,6 +1,7 @@
 #include <QPointer>
 #include <QStyle>
 #include <QMessageBox>
+#include <QTimer>
 
 #include "trayicon.h"
 #include "settingsdialog.h"

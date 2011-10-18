@@ -6,7 +6,6 @@
 #include <QIcon>
 #include <QMenu>
 #include <QSettings>
-#include <QTimer>
 
 
 class TrayIcon : public QSystemTrayIcon
