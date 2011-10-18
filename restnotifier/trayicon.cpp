@@ -47,9 +47,12 @@ void TrayIcon::showRestMessage()
 {
     timer->stop();
     QString message = settings.value("message", "").toString();
+    if (message.size() > 100)
+        message = "";
     MessageType mt = (MessageType)(settings.value("m_type", 0).toInt());
     switch (mt)
     {
+    default:
     case MT_TRAY:
         showMessage("Restnotifier", message, Information);
         break;
@@ -71,7 +74,7 @@ int TrayIcon::getIntervalMsecs() const
 {
     bool ok;
     int interval = settings.value("interval", 60).toInt(&ok);
-    if (!ok)
+    if ((!ok) || (interval > 2000))
         interval = 60;
     interval *= 60000; // to msec
     return interval;
