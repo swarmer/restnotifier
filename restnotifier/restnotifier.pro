@@ -15,3 +15,8 @@ FORMS += \
 
 TRANSLATIONS = \
     restnotifier_ru_RU.ts
+
+
+unix {
+    QMAKE_CXXFLAGS += -Wall -Wextra -Werror
+}
