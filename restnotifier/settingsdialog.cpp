@@ -16,7 +16,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(this, SIGNAL(accepted()), SLOT(saveSettings()));
     ui_settingsDialog->restartLabel->hide();
     loadSettings();
-    // connect after loading settings because it may emit unexpected signal
+    // connect after loading settings
+    // because otherwise unexpected signal may be emitted
     connect(ui_settingsDialog->languageComboBox, SIGNAL(currentIndexChanged(int)),
             ui_settingsDialog->restartLabel, SLOT(show()));
 }
