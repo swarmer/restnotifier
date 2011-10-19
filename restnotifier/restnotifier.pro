@@ -14,7 +14,7 @@ FORMS += \
     settingsdialog.ui
 
 TRANSLATIONS = \
-    restnotifier_ru_RU.ts
+    restnotifier_ru.ts
 
 
 unix {

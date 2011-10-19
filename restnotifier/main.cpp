@@ -24,7 +24,7 @@ int main(int argc, char **argv)
         lang = QLocale::languageToString(QLocale::system().language());
     if (lang == "ru")
     {
-        QLocale::setDefault(QLocale("ru_RU"));
+        QLocale::setDefault(QLocale("ru"));
 
         // install qt translator
 #if defined Q_WS_X11
@@ -32,11 +32,11 @@ int main(int argc, char **argv)
 #elif defined Q_WS_WIN
         const QString loc();
 #endif
-        qtTranslator.load("qt_" + QLocale().name(), loc);
+        qtTranslator.load("qt_ru", loc);
         app.installTranslator(&qtTranslator);
 
         // install app translator
-        translator.load("restnotifier_ru_RU");
+        translator.load("restnotifier_ru");
         app.installTranslator(&translator);
     }
 
