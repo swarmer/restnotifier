@@ -14,7 +14,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui_settingsDialog = QSharedPointer<Ui::SettingsDialog>(new Ui::SettingsDialog);
     ui_settingsDialog->setupUi(this);
     connect(this, SIGNAL(accepted()), SLOT(saveSettings()));
+    ui_settingsDialog->restartLabel->hide();
     loadSettings();
+    // connect after loading settings because it may emit unexpected signal
+    connect(ui_settingsDialog->languageComboBox, SIGNAL(currentIndexChanged(int)),
+            ui_settingsDialog->restartLabel, SLOT(show()));
 }
 
 void SettingsDialog::loadSettings()
