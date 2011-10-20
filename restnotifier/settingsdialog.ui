@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Settings</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/cloud.png</normaloff>:/cloud.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
@@ -203,7 +207,9 @@ p, li { white-space: pre-wrap; }
   <tabstop>dialogRadio</tabstop>
   <tabstop>dialogButtonBox</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>dialogButtonBox</sender>
