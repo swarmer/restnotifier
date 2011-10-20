@@ -5,6 +5,7 @@
 
 #include "trayicon.h"
 #include "settingsdialog.h"
+#include "restdialog.h"
 
 
 TrayIcon::TrayIcon(QObject *parent) :
@@ -12,6 +13,7 @@ TrayIcon::TrayIcon(QObject *parent) :
 {
     icon = QSharedPointer<QIcon>(new QIcon(":/cloud.png"));
     menu = QSharedPointer<QMenu>(new QMenu);
+    isPostponedNow = false;
 
     // setup context menu
     setIcon(*icon);
@@ -37,7 +39,7 @@ void TrayIcon::showSettings()
 
     // reset timer if timeout has changed
     int interval = getIntervalMsecs();
-    if (timer->interval() != interval)
+    if ((timer->interval() != interval) && (!isPostponedNow))
     {
         timer->stop();
         timer->start(interval);
@@ -58,23 +60,21 @@ void TrayIcon::showTrayMessage()
     showMessage("Restnotifier", message, Information);
 }
 
-void TrayIcon::showDialogMessage()
+bool TrayIcon::showDialogMessage()
 {
     QString message = getRestMessage();
-    QPointer<QMessageBox> mbox(new QMessageBox);
-    mbox->addButton(QMessageBox::Ok);
-    mbox->setWindowTitle("Restnotifier");
-    mbox->setText(message);
-    mbox->setIcon(QMessageBox::Information);
-    mbox->activateWindow();
-    mbox->exec();
-    delete mbox;
+    QPointer<RestDialog> restDialog(new RestDialog(message));
+    restDialog->exec();
+    bool postpone = restDialog->isPostponed();
+    delete restDialog;
+    return postpone;
 }
 
 void TrayIcon::showRestMessage()
 {
     timer->stop();
     MessageType mt = (MessageType)(settings.value("m_type", 0).toInt());
+    bool postpone = false;
     switch (mt)
     {
     default:
@@ -82,10 +82,21 @@ void TrayIcon::showRestMessage()
         showTrayMessage();
         break;
     case MT_DIALOG:
-        showDialogMessage();
+        postpone = showDialogMessage();
         break;
     }
-    timer->start(getIntervalMsecs());
+    // postpone if needed
+    const int postponeTime = 60000 * 5; // 5 min to msec
+    if (postpone)
+    {
+        timer->start(postponeTime);
+        isPostponedNow = true;
+    }
+    else
+    {
+        timer->start(getIntervalMsecs());
+        isPostponedNow = false;
+    }
 }
 
 int TrayIcon::getIntervalMsecs() const

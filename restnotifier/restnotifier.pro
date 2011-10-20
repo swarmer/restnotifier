@@ -1,17 +1,20 @@
 SOURCES += \
     main.cpp \
     trayicon.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    restdialog.cpp
 
 HEADERS += \
     trayicon.h \
-    settingsdialog.h
+    settingsdialog.h \
+    restdialog.h
 
 RESOURCES += \
     icons.qrc
 
 FORMS += \
-    settingsdialog.ui
+    settingsdialog.ui \
+    restdialog.ui
 
 TRANSLATIONS = \
     restnotifier_ru.ts
@@ -20,3 +23,6 @@ TRANSLATIONS = \
 unix {
     QMAKE_CXXFLAGS += -Wall -Wextra -Werror
 }
+
+
+
