@@ -2,6 +2,25 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="ru_RU">
 <context>
+    <name>RestDialog</name>
+    <message>
+        <location filename="restdialog.ui" line="26"/>
+        <source>Restnotifier</source>
+        <translation>Restnotifier</translation>
+    </message>
+    <message>
+        <location filename="restdialog.ui" line="36"/>
+        <source>It&apos;s time to rest</source>
+        <oldsource>It&apos;s time to rest!</oldsource>
+        <translation>Время отдохнуть</translation>
+    </message>
+    <message>
+        <location filename="restdialog.ui" line="59"/>
+        <source>Remind me 5 minutes later</source>
+        <translation>Напомнить через 5 минут</translation>
+    </message>
+</context>
+<context>
     <name>SettingsDialog</name>
     <message>
         <location filename="settingsdialog.ui" line="14"/>
@@ -9,57 +28,57 @@
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="26"/>
+        <location filename="settingsdialog.ui" line="30"/>
         <source>Notifications</source>
         <translation>Напоминания</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="41"/>
+        <location filename="settingsdialog.ui" line="45"/>
         <source>Interval</source>
         <translation>Интервал</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="68"/>
+        <location filename="settingsdialog.ui" line="72"/>
         <source>h:mm</source>
         <translation>h:mm</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="78"/>
+        <location filename="settingsdialog.ui" line="82"/>
         <source>Message</source>
         <translation>Сообщение</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="101"/>
+        <location filename="settingsdialog.ui" line="105"/>
         <source>Message type</source>
         <translation>Вид сообщения</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="107"/>
+        <location filename="settingsdialog.ui" line="111"/>
         <source>System tray message</source>
         <translation>Сообщение в трее</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="114"/>
+        <location filename="settingsdialog.ui" line="118"/>
         <source>Dialog box</source>
         <translation>Диалоговое окно</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="124"/>
+        <location filename="settingsdialog.ui" line="128"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="134"/>
+        <location filename="settingsdialog.ui" line="138"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message utf8="true">
-        <location filename="settingsdialog.ui" line="139"/>
+        <location filename="settingsdialog.ui" line="143"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="160"/>
+        <location filename="settingsdialog.ui" line="164"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -72,7 +91,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Требуется перезапуск&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="40"/>
+        <location filename="settingsdialog.cpp" line="41"/>
         <source>It&apos;s time to rest</source>
         <translation>Время отдохнуть</translation>
     </message>
@@ -80,12 +99,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TrayIcon</name>
     <message>
-        <location filename="trayicon.cpp" line="20"/>
+        <location filename="trayicon.cpp" line="21"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="trayicon.cpp" line="22"/>
+        <location filename="trayicon.cpp" line="23"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
