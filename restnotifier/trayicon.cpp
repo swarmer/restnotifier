@@ -44,28 +44,45 @@ void TrayIcon::showSettings()
     }
 }
 
-void TrayIcon::showRestMessage()
+QString TrayIcon::getRestMessage() const
 {
-    timer->stop();
     QString message = settings.value("message", "").toString();
     if (message.size() > 100)
         message = "";
+    return message;
+}
+
+void TrayIcon::showTrayMessage()
+{
+    QString message = getRestMessage();
+    showMessage("Restnotifier", message, Information);
+}
+
+void TrayIcon::showDialogMessage()
+{
+    QString message = getRestMessage();
+    QPointer<QMessageBox> mbox(new QMessageBox);
+    mbox->addButton(QMessageBox::Ok);
+    mbox->setWindowTitle("Restnotifier");
+    mbox->setText(message);
+    mbox->setIcon(QMessageBox::Information);
+    mbox->activateWindow();
+    mbox->exec();
+    delete mbox;
+}
+
+void TrayIcon::showRestMessage()
+{
+    timer->stop();
     MessageType mt = (MessageType)(settings.value("m_type", 0).toInt());
     switch (mt)
     {
     default:
     case MT_TRAY:
-        showMessage("Restnotifier", message, Information);
+        showTrayMessage();
         break;
     case MT_DIALOG:
-        QPointer<QMessageBox> mbox(new QMessageBox);
-        mbox->addButton(QMessageBox::Ok);
-        mbox->setWindowTitle("Restnotifier");
-        mbox->setText(message);
-        mbox->setIcon(QMessageBox::Information);
-        mbox->activateWindow();
-        mbox->exec();
-        delete mbox;
+        showDialogMessage();
         break;
     }
     timer->start(getIntervalMsecs());

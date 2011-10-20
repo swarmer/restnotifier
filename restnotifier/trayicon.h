@@ -19,6 +19,9 @@ class TrayIcon : public QSystemTrayIcon
     QTimer *timer;
 
     int getIntervalMsecs() const;
+    QString getRestMessage() const;
+    void showTrayMessage();
+    void showDialogMessage();
 
 private slots:
     void showSettings();
