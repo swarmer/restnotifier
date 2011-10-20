@@ -36,7 +36,8 @@ int main(int argc, char **argv)
         app.installTranslator(&qtTranslator);
 
         // install app translator
-        translator.load("restnotifier_ru");
+        QString translationsPath = settings.value("tr_path", QString()).toString();
+        translator.load("restnotifier_ru", translationsPath);
         app.installTranslator(&translator);
     }
 
