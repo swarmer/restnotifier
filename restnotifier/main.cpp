@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 #if defined Q_WS_X11
         const QString loc = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #elif defined Q_WS_WIN
-        const QString loc();
+        const QString loc;
 #endif
         qtTranslator.load("qt_ru", loc);
         app.installTranslator(&qtTranslator);
