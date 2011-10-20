@@ -1,5 +1,4 @@
 #include <QPointer>
-#include <QStyle>
 #include <QMessageBox>
 #include <QTimer>
 
@@ -17,9 +16,9 @@ TrayIcon::TrayIcon(QObject *parent) :
 
     // setup context menu
     setIcon(*icon);
-    QStyle *style = QApplication::style();
-    QIcon quitIcon = style->standardIcon(QStyle::SP_DialogCloseButton);
-    menu->addAction(tr("Settings"), this, SLOT(showSettings()));
+    QIcon quitIcon(":/Actions-application-exit-icon.png");
+    QIcon settingsIcon(":/Actions-configure-icon.png");
+    menu->addAction(settingsIcon, tr("Settings"), this, SLOT(showSettings()));
     menu->addSeparator();
     menu->addAction(quitIcon, tr("Quit"), this, SIGNAL(quitScheduled()));
     setContextMenu(menu.data());
