@@ -21,7 +21,10 @@ int main(int argc, char **argv)
     if (settings.contains("lang"))
         lang = settings.value("lang").toString();
     else
-        lang = QLocale::languageToString(QLocale::system().language());
+    {
+        lang = QLocale::system().name();
+        lang.truncate(lang.indexOf('_'));
+    }
     if (lang == "ru")
     {
         QLocale::setDefault(QLocale("ru"));
