@@ -35,6 +35,9 @@
      <property name="text">
       <string>It's time to rest</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
    </item>
    <item>
