@@ -26,6 +26,8 @@ class SettingsDialog : public QDialog
 
 private slots:
     void saveSettings();
+    void showImagePathDialog();
+    void checkImagePath();
 
 
 // PUBLIC

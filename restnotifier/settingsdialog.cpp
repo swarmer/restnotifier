@@ -1,6 +1,10 @@
 #include <QVariant>
 #include <QTime>
 #include <QLocale>
+#include <QPointer>
+#include <QFileDialog>
+#include <QPalette>
+#include <QFile>
 
 #include "settingsdialog.h"
 
@@ -20,6 +24,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     // because otherwise unexpected signal may be emitted
     connect(ui_settingsDialog->languageComboBox, SIGNAL(currentIndexChanged(int)),
             ui_settingsDialog->restartLabel, SLOT(show()));
+    connect(ui_settingsDialog->imageLineEdit, SIGNAL(textChanged(QString)),
+            SLOT(checkImagePath()));
+    connect(ui_settingsDialog->imagePathButton, SIGNAL(clicked()),
+            SLOT(showImagePathDialog()));
+    checkImagePath();
 }
 
 void SettingsDialog::loadSettings()
@@ -55,6 +64,14 @@ void SettingsDialog::loadSettings()
         break;
     }
 
+    // set whether to use image
+    bool useImage = settings.value("use_img", false).toBool();
+    ui_settingsDialog->imageGroupBox->setChecked(useImage);
+
+    // set image file path
+    QString imagePath = settings.value("img_path", QString()).toString();
+    ui_settingsDialog->imageLineEdit->setText(imagePath);
+
     // set language
     QString language;
     if (settings.contains("lang"))
@@ -87,6 +104,14 @@ void SettingsDialog::saveSettings()
         m_type = (int)MT_DIALOG;
     settings.setValue("m_type", m_type);
 
+    // save whether to use image
+    bool useImage = ui_settingsDialog->imageGroupBox->isChecked();
+    settings.setValue("use_img", useImage);
+
+    // save image file path
+    QString imagePath = ui_settingsDialog->imageLineEdit->text();
+    settings.setValue("img_path", imagePath);
+
     // save language
     if (ui_settingsDialog->languageComboBox->currentText() ==
             QString::fromUtf8("Русский"))
@@ -95,4 +120,27 @@ void SettingsDialog::saveSettings()
     }
     else
         settings.setValue("lang", "en");
+}
+
+void SettingsDialog::showImagePathDialog()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Select image"),
+            "", tr("Image files (*.png *.bmp *.jpeg *.jpg)"));
+    ui_settingsDialog->imageLineEdit->setText(fileName);
+}
+
+void SettingsDialog::checkImagePath()
+{
+    QLineEdit *imageLineEdit = ui_settingsDialog->imageLineEdit;
+    QPalette palette = imageLineEdit->palette();
+    bool exists = QFile::exists(imageLineEdit->text());
+    if (!exists)
+    {
+        palette.setColor(QPalette::Active, QPalette::Text, Qt::red);
+        imageLineEdit->setPalette(palette);
+    }
+    else
+    {
+        imageLineEdit->setPalette(qApp->palette());
+    }
 }
