@@ -16,6 +16,8 @@ class RestDialog : public QDialog
     QSettings settings;
     QSharedPointer<Ui::RestDialog> ui_restDialog;
 
+    void setImage();
+
 // PUBLIC
 public:
     explicit RestDialog(QWidget *parent = 0);

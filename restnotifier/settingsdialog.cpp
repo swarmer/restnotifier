@@ -126,7 +126,8 @@ void SettingsDialog::showImagePathDialog()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select image"),
             "", tr("Image files (*.png *.bmp *.jpeg *.jpg)"));
-    ui_settingsDialog->imageLineEdit->setText(fileName);
+    if (!fileName.isEmpty())
+        ui_settingsDialog->imageLineEdit->setText(fileName);
 }
 
 void SettingsDialog::checkImagePath()
