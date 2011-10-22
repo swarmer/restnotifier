@@ -2,6 +2,7 @@
 #define RESTDIALOG_H
 
 #include <QDialog>
+#include <QSettings>
 #include <QSharedPointer>
 
 #include "ui_restdialog.h"
@@ -12,11 +13,12 @@ class RestDialog : public QDialog
     Q_OBJECT
 
 // PRIVATE
+    QSettings settings;
     QSharedPointer<Ui::RestDialog> ui_restDialog;
 
 // PUBLIC
 public:
-    explicit RestDialog(QString& message, QWidget *parent = 0);
+    explicit RestDialog(QWidget *parent = 0);
     bool isPostponed() const;
 };
 

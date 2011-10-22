@@ -45,24 +45,18 @@ void TrayIcon::showSettings()
     }
 }
 
-QString TrayIcon::getRestMessage() const
+void TrayIcon::showTrayMessage()
 {
     QString message = settings.value("message", "").toString();
     if (message.size() > 100)
         message = "";
-    return message;
-}
-
-void TrayIcon::showTrayMessage()
-{
-    QString message = getRestMessage();
     showMessage("Restnotifier", message, Information);
 }
 
+// returns true if message was postponed
 bool TrayIcon::showDialogMessage()
 {
-    QString message = getRestMessage();
-    QPointer<RestDialog> restDialog(new RestDialog(message));
+    QPointer<RestDialog> restDialog(new RestDialog);
     restDialog->exec();
     bool postpone = restDialog->isPostponed();
     delete restDialog;

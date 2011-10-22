@@ -1,6 +1,6 @@
 #include "restdialog.h"
 
-RestDialog::RestDialog(QString& message, QWidget *parent) :
+RestDialog::RestDialog(QWidget *parent) :
     QDialog(parent)
 {
     Qt::WindowFlags flags = windowFlags();
@@ -8,6 +8,7 @@ RestDialog::RestDialog(QString& message, QWidget *parent) :
                    Qt::WindowStaysOnTopHint);
     ui_restDialog = QSharedPointer<Ui::RestDialog>(new Ui::RestDialog());
     ui_restDialog->setupUi(this);
+    QString message = settings.value("message", QString()).toString();
     ui_restDialog->messageLabel->setText(message);
     activateWindow();
 }
