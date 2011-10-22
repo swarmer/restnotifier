@@ -42,13 +42,28 @@ void SettingsDialog::loadSettings()
     int hours, minutes;
     hours = interval / 60;
     minutes = interval % 60;
-    QTime time(hours, minutes);
-    ui_settingsDialog->intervalTime->setTime(time);
+    QTime intervalTime(hours, minutes);
+    ui_settingsDialog->intervalTime->setTime(intervalTime);
 
     // set message
     QString message = settings.value("message",
                                       tr("It's time to rest")).toString();
     ui_settingsDialog->messageLine->setText(message);
+
+    // set whether to check user idle time
+    bool checkIdle = settings.value("check_idle", true).toBool();
+    ui_settingsDialog->idleGroupBox->setChecked(checkIdle);
+
+    // set idle time limit
+    int seconds = settings.value("idle_limit", 60).toInt(&ok);
+    if (!ok)
+        seconds = 60;
+    hours = seconds / 3600;
+    seconds %= 3600;
+    minutes = seconds / 60;
+    seconds %= 60;
+    QTime idleTime(hours, minutes, seconds);
+    ui_settingsDialog->idleTimeEdit->setTime(idleTime);
 
     // set message type
     MessageType mt = (MessageType)(settings.value("m_type", 0).toInt(&ok));
@@ -95,6 +110,16 @@ void SettingsDialog::saveSettings()
 
     // save message
     settings.setValue("message", ui_settingsDialog->messageLine->text());
+
+    // save whether to check user idle time
+    bool checkIdle = ui_settingsDialog->idleGroupBox->isChecked();
+    settings.setValue("check_idle", checkIdle);
+
+    // save idle time limit
+    QTime idleLimit = ui_settingsDialog->idleTimeEdit->time();
+    int seconds = (idleLimit.hour() * 3600) + (idleLimit.minute() * 60) +
+            idleLimit.second();
+    settings.setValue("idle_limit", seconds);
 
     // save message type
     int m_type = 0;

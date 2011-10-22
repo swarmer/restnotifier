@@ -8,6 +8,35 @@
 #include "ui_settingsdialog.h"
 
 
+/* Current settings keys:
+  int interval:
+    Interval of messages in minutes
+
+  QString message:
+    Message text
+
+  MessageType m_type:
+    Type of message
+
+  bool use_img:
+    Whether to embed image in notification dialog
+
+  QString img_path:
+    Path of image to embed
+
+  QString lang:
+    Language string ("ru" or "en")
+
+  QString tr_path:
+    Path to folder with translation files (to be used on linux)
+
+  bool check_idle:
+    Whether to check user idle time
+
+  int idle_limit:
+    Maximum idle time (in seconds)
+*/
+
 enum MessageType
 {
     MT_TRAY = 0,
