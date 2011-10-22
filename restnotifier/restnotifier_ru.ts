@@ -15,7 +15,7 @@
         <translation>Время отдохнуть</translation>
     </message>
     <message>
-        <location filename="restdialog.ui" line="59"/>
+        <location filename="restdialog.ui" line="72"/>
         <source>Remind me 5 minutes later</source>
         <translation>Напомнить через 5 минут</translation>
     </message>
@@ -64,21 +64,31 @@
     </message>
     <message>
         <location filename="settingsdialog.ui" line="128"/>
+        <source>Dialog box image</source>
+        <translation>Изображение в диалоговом окне</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="147"/>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="157"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="138"/>
+        <location filename="settingsdialog.ui" line="167"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message utf8="true">
-        <location filename="settingsdialog.ui" line="143"/>
+        <location filename="settingsdialog.ui" line="172"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="164"/>
+        <location filename="settingsdialog.ui" line="193"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -91,9 +101,19 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Требуется перезапуск&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="41"/>
+        <location filename="settingsdialog.cpp" line="50"/>
         <source>It&apos;s time to rest</source>
         <translation>Время отдохнуть</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.cpp" line="127"/>
+        <source>Select image</source>
+        <translation>Выберите изображение</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.cpp" line="128"/>
+        <source>Image files (*.png *.bmp *.jpeg *.jpg)</source>
+        <translation>Файлы изображений (*.png *.bmp *.jpeg *.jpg)</translation>
     </message>
 </context>
 <context>
