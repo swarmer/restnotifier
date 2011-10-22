@@ -35,14 +35,6 @@ void TrayIcon::showSettings()
     QPointer<SettingsDialog> settingsDialog(new SettingsDialog);
     settingsDialog->exec();
     delete settingsDialog;
-
-    // reset timer if timeout has changed
-    int interval = getIntervalMsecs();
-    if ((timer->interval() != interval) && (!isPostponedNow))
-    {
-        timer->stop();
-        timer->start(interval);
-    }
 }
 
 void TrayIcon::showTrayMessage()
