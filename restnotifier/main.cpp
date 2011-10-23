@@ -30,10 +30,10 @@ int main(int argc, char **argv)
         QLocale::setDefault(QLocale("ru"));
 
         // install qt translator
-#if defined Q_WS_X11
-        const QString loc = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-#elif defined Q_WS_WIN
+#if defined Q_OS_WIN
         const QString loc;
+#else
+        const QString loc = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #endif
         qtTranslator.load("qt_ru", loc);
         app.installTranslator(&qtTranslator);
