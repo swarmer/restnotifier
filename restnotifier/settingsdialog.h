@@ -35,6 +35,12 @@
 
   int idle_limit:
     Maximum idle time (in seconds)
+
+  bool use_sound:
+    Whether to use sound to notify user
+
+  QString snd_path:
+    Path to sound file
 */
 
 enum MessageType
@@ -59,6 +65,7 @@ class SettingsDialog : public QDialog
     void loadIdleSettings();
     void loadMessageSettings();
     void loadIntervalSettings();
+    void loadSoundSettings();
 
     // saving functions
     void saveLanguageSettings();
@@ -66,11 +73,14 @@ class SettingsDialog : public QDialog
     void saveIdleSettings();
     void saveMessageSettings();
     void saveIntervalSettings();
+    void saveSoundSettings();
 
 private slots:
     void saveSettings();
     void showImagePathDialog();
-    void checkImagePath();
+    void showSoundPathDialog();
+    void checkFilePaths();
+    void checkFilePath(QLineEdit *lineEdit);
 
 
 // PUBLIC

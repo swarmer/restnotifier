@@ -4,7 +4,7 @@
 #include <QPointer>
 #include <QFileDialog>
 #include <QPalette>
-#include <QFile>
+#include <QFileInfo>
 
 #include "settingsdialog.h"
 
@@ -22,13 +22,23 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     loadSettings();
     // connect after loading settings
     // because otherwise unexpected signal may be emitted
+
+    // show label asking to restart app to apply translation
     connect(ui_settingsDialog->languageComboBox, SIGNAL(currentIndexChanged(int)),
             ui_settingsDialog->restartLabel, SLOT(show()));
+
+    // check that image and sound files exist
     connect(ui_settingsDialog->imageLineEdit, SIGNAL(textChanged(QString)),
-            SLOT(checkImagePath()));
+            SLOT(checkFilePaths()));
+    connect(ui_settingsDialog->soundLineEdit, SIGNAL(textChanged(QString)),
+            SLOT(checkFilePaths()));
+
+    // show file path dialogs
     connect(ui_settingsDialog->imagePathButton, SIGNAL(clicked()),
             SLOT(showImagePathDialog()));
-    checkImagePath();
+    connect(ui_settingsDialog->soundPathButton, SIGNAL(clicked()),
+            SLOT(showSoundPathDialog()));
+    checkFilePaths();
 }
 
 void SettingsDialog::loadSettings()
@@ -38,6 +48,7 @@ void SettingsDialog::loadSettings()
     loadIdleSettings();
     loadImageSettings();
     loadLanguageSettings();
+    loadSoundSettings();
 }
 
 // loading functions
@@ -122,6 +133,17 @@ void SettingsDialog::loadIntervalSettings()
     QTime intervalTime(hours, minutes);
     ui_settingsDialog->intervalTime->setTime(intervalTime);
 }
+
+void SettingsDialog::loadSoundSettings()
+{
+    // set whether to use sound
+    bool useSound = settings.value("use_sound", false).toBool();
+    ui_settingsDialog->soundGroupBox->setChecked(useSound);
+
+    // set sound file path
+    QString soundPath = settings.value("snd_path", QString()).toString();
+    ui_settingsDialog->soundLineEdit->setText(soundPath);
+}
 // ^ loading functions
 
 
@@ -132,6 +154,7 @@ void SettingsDialog::saveSettings()
     saveIdleSettings();
     saveImageSettings();
     saveLanguageSettings();
+    saveSoundSettings();
 }
 
 // saving functions
@@ -191,6 +214,17 @@ void SettingsDialog::saveIntervalSettings()
     interval = (time.hour() * 60) + time.minute();
     settings.setValue("interval", interval);
 }
+
+void SettingsDialog::saveSoundSettings()
+{
+    // save whether to use sound
+    bool useSound = ui_settingsDialog->soundGroupBox->isChecked();
+    settings.setValue("use_sound", useSound);
+
+    // save sound file path
+    QString soundPath = ui_settingsDialog->soundLineEdit->text();
+    settings.setValue("snd_path", soundPath);
+}
 // ^ saving functions
 
 
@@ -202,18 +236,31 @@ void SettingsDialog::showImagePathDialog()
         ui_settingsDialog->imageLineEdit->setText(fileName);
 }
 
-void SettingsDialog::checkImagePath()
+void SettingsDialog::showSoundPathDialog()
 {
-    QLineEdit *imageLineEdit = ui_settingsDialog->imageLineEdit;
-    QPalette palette = imageLineEdit->palette();
-    bool exists = QFile::exists(imageLineEdit->text());
-    if (!exists)
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Select sound"),
+            "", tr("Sound file (*.wav)"));
+    if (!fileName.isEmpty())
+        ui_settingsDialog->soundLineEdit->setText(fileName);
+}
+
+void SettingsDialog::checkFilePaths()
+{
+    checkFilePath(ui_settingsDialog->imageLineEdit);
+    checkFilePath(ui_settingsDialog->soundLineEdit);
+}
+
+void SettingsDialog::checkFilePath(QLineEdit *lineEdit)
+{
+    QPalette palette = lineEdit->palette();
+    QFileInfo info(lineEdit->text());
+    if (!info.exists() || !info.isFile())
     {
         palette.setColor(QPalette::Active, QPalette::Text, Qt::red);
-        imageLineEdit->setPalette(palette);
+        lineEdit->setPalette(palette);
     }
     else
     {
-        imageLineEdit->setPalette(qApp->palette());
+        lineEdit->setPalette(qApp->palette());
     }
 }
