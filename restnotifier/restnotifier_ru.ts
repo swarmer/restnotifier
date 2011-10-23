@@ -101,17 +101,37 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Требуется перезапуск&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="50"/>
+        <location filename="settingsdialog.ui" line="233"/>
+        <source>Idle limit</source>
+        <translation>Лимит простоя</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="242"/>
+        <source>Disable messages after</source>
+        <translation>Отключить напоминания после</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="287"/>
+        <source>h:mm:ss</source>
+        <translation>h:mm:ss</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="297"/>
+        <source>idle time</source>
+        <translation>простоя</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.cpp" line="93"/>
         <source>It&apos;s time to rest</source>
         <translation>Время отдохнуть</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="127"/>
+        <location filename="settingsdialog.cpp" line="199"/>
         <source>Select image</source>
         <translation>Выберите изображение</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="128"/>
+        <location filename="settingsdialog.cpp" line="200"/>
         <source>Image files (*.png *.bmp *.jpeg *.jpg)</source>
         <translation>Файлы изображений (*.png *.bmp *.jpeg *.jpg)</translation>
     </message>
@@ -119,12 +139,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TrayIcon</name>
     <message>
-        <location filename="trayicon.cpp" line="21"/>
+        <location filename="trayicon.cpp" line="23"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="trayicon.cpp" line="23"/>
+        <location filename="trayicon.cpp" line="25"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
