@@ -6,6 +6,8 @@
 #include "settingsdialog.h"
 #include "restdialog.h"
 
+extern "C" int getIdleSecs(); // idletime.c
+
 
 TrayIcon::TrayIcon(QObject *parent) :
     QSystemTrayIcon(parent)
@@ -58,18 +60,41 @@ bool TrayIcon::showDialogMessage()
 void TrayIcon::showRestMessage()
 {
     timer->stop();
-    MessageType mt = (MessageType)(settings.value("m_type", 0).toInt());
     bool postpone = false;
-    switch (mt)
+
+    // check if message should be shown
+    bool canShow = true;
+    bool checkIdle = settings.value("check_idle", true).toBool();
+    if (checkIdle)
     {
-    default:
-    case MT_TRAY:
-        showTrayMessage();
-        break;
-    case MT_DIALOG:
-        postpone = showDialogMessage();
-        break;
+        int idleSec = getIdleSecs();
+        if (idleSec != -1)
+        {
+            bool ok;
+            int idleLimit = settings.value("idle_limit", 60).toInt(&ok);
+            if (!ok)
+                idleLimit = 60;
+            if (idleSec >= idleLimit)
+                canShow = false;
+        }
     }
+
+    // show message itself
+    if (canShow)
+    {
+        MessageType mt = (MessageType)(settings.value("m_type", 0).toInt());
+        switch (mt)
+        {
+        default:
+        case MT_TRAY:
+            showTrayMessage();
+            break;
+        case MT_DIALOG:
+            postpone = showDialogMessage();
+            break;
+        }
+    }
+
     // postpone if needed
     const int postponeTime = 60000 * 5; // 5 min to msec
     if (postpone)

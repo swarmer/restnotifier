@@ -2,7 +2,8 @@ SOURCES += \
     main.cpp \
     trayicon.cpp \
     settingsdialog.cpp \
-    restdialog.cpp
+    restdialog.cpp \
+    idletime.c
 
 HEADERS += \
     trayicon.h \
@@ -19,10 +20,9 @@ FORMS += \
 TRANSLATIONS = \
     restnotifier_ru.ts
 
+unix:LIBS += -lXss
 
+# strict compiler flags
 unix {
     QMAKE_CXXFLAGS += -Wall -Wextra -Werror
 }
-
-
-
