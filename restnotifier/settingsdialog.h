@@ -53,6 +53,20 @@ class SettingsDialog : public QDialog
 
     void loadSettings();
 
+    // loading functions
+    void loadLanguageSettings();
+    void loadImageSettings();
+    void loadIdleSettings();
+    void loadMessageSettings();
+    void loadIntervalSettings();
+
+    // saving functions
+    void saveLanguageSettings();
+    void saveImageSettings();
+    void saveIdleSettings();
+    void saveMessageSettings();
+    void saveIntervalSettings();
+
 private slots:
     void saveSettings();
     void showImagePathDialog();
