@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>331</width>
+    <width>355</width>
     <height>419</height>
    </rect>
   </property>
@@ -239,7 +239,7 @@ p, li { white-space: pre-wrap; }
       <item row="0" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Disable messagess after</string>
+         <string>Disable messages after</string>
         </property>
        </widget>
       </item>
@@ -288,6 +288,13 @@ p, li { white-space: pre-wrap; }
           </property>
           <property name="currentSectionIndex">
            <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>idle time</string>
           </property>
          </widget>
         </item>
