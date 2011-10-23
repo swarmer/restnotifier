@@ -1,6 +1,7 @@
 #include <QPointer>
 #include <QMessageBox>
 #include <QTimer>
+#include <QSound>
 
 #include "trayicon.h"
 #include "settingsdialog.h"
@@ -57,31 +58,29 @@ bool TrayIcon::showDialogMessage()
     return postpone;
 }
 
+void TrayIcon::playSound()
+{
+    if (QSound::isAvailable())
+    {
+        QString soundPath = settings.value("snd_path", QString()).toString();
+        QSound::play(soundPath);
+    }
+}
+
 void TrayIcon::showRestMessage()
 {
     timer->stop();
     bool postpone = false;
 
-    // check if message should be shown
-    bool canShow = true;
-    bool checkIdle = settings.value("check_idle", true).toBool();
-    if (checkIdle)
-    {
-        int idleSec = getIdleSecs();
-        if (idleSec != -1)
-        {
-            bool ok;
-            int idleLimit = settings.value("idle_limit", 60).toInt(&ok);
-            if (!ok)
-                idleLimit = 60;
-            if (idleSec >= idleLimit)
-                canShow = false;
-        }
-    }
-
     // show message itself
-    if (canShow)
+    if (canNotify())
     {
+        // sound notification
+        bool useSound = settings.value("use_sound", false).toBool();
+        if (useSound)
+            playSound();
+
+        // usual message
         MessageType mt = (MessageType)(settings.value("m_type", 0).toInt());
         switch (mt)
         {
@@ -107,6 +106,27 @@ void TrayIcon::showRestMessage()
         timer->start(getIntervalMsecs());
         isPostponedNow = false;
     }
+}
+
+bool TrayIcon::canNotify()
+{
+    // check if message should be shown
+    bool canShow = true;
+    bool checkIdle = settings.value("check_idle", true).toBool();
+    if (checkIdle)
+    {
+        int idleSec = getIdleSecs();
+        if (idleSec != -1)
+        {
+            bool ok;
+            int idleLimit = settings.value("idle_limit", 60).toInt(&ok);
+            if (!ok)
+                idleLimit = 60;
+            if (idleSec >= idleLimit)
+                canShow = false;
+        }
+    }
+    return canShow;
 }
 
 int TrayIcon::getIntervalMsecs() const

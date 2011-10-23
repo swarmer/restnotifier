@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QPalette>
 #include <QFileInfo>
+#include <QSound>
 
 #include "settingsdialog.h"
 
@@ -20,6 +21,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(this, SIGNAL(accepted()), SLOT(saveSettings()));
     ui_settingsDialog->restartLabel->hide();
     loadSettings();
+
+    // check that QSound is available
+    if (!QSound::isAvailable())
+        ui_settingsDialog->soundGroupBox->hide();
+
     // connect after loading settings
     // because otherwise unexpected signal may be emitted
 
