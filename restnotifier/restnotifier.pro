@@ -20,6 +20,7 @@ FORMS += \
 TRANSLATIONS = \
     restnotifier_ru.ts
 
+# X Screensaver extensions (needed for idle time function on linux)
 unix:LIBS += -lXss
 
 # strict compiler flags
