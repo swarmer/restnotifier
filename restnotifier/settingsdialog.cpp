@@ -24,7 +24,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
     // check that QSound is available
     if (!QSound::isAvailable())
+    {
         ui_settingsDialog->soundGroupBox->hide();
+        adjustSize();
+    }
 
     // connect after loading settings
     // because otherwise unexpected signal may be emitted
