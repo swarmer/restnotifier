@@ -48,47 +48,53 @@
         <translation>Сообщение</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="105"/>
+        <location filename="settingsdialog.ui" line="194"/>
         <source>Message type</source>
         <translation>Вид сообщения</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="111"/>
+        <location filename="settingsdialog.ui" line="200"/>
         <source>System tray message</source>
         <translation>Сообщение в трее</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="118"/>
+        <location filename="settingsdialog.ui" line="207"/>
         <source>Dialog box</source>
         <translation>Диалоговое окно</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="128"/>
+        <location filename="settingsdialog.ui" line="217"/>
+        <source>Play sound</source>
+        <translation>Проигрывать звук</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="246"/>
         <source>Dialog box image</source>
         <translation>Изображение в диалоговом окне</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="147"/>
+        <location filename="settingsdialog.ui" line="236"/>
+        <location filename="settingsdialog.ui" line="265"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="157"/>
+        <location filename="settingsdialog.ui" line="275"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="167"/>
+        <location filename="settingsdialog.ui" line="285"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message utf8="true">
-        <location filename="settingsdialog.ui" line="172"/>
+        <location filename="settingsdialog.ui" line="290"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="193"/>
+        <location filename="settingsdialog.ui" line="311"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -101,50 +107,60 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Требуется перезапуск&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="233"/>
+        <location filename="settingsdialog.ui" line="105"/>
         <source>Idle limit</source>
         <translation>Лимит простоя</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="242"/>
+        <location filename="settingsdialog.ui" line="114"/>
         <source>Disable messages after</source>
         <translation>Отключить напоминания после</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="287"/>
+        <location filename="settingsdialog.ui" line="159"/>
         <source>h:mm:ss</source>
         <translation>h:mm:ss</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="297"/>
+        <location filename="settingsdialog.ui" line="169"/>
         <source>idle time</source>
         <translation>простоя</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="93"/>
+        <location filename="settingsdialog.cpp" line="113"/>
         <source>It&apos;s time to rest</source>
         <translation>Время отдохнуть</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="199"/>
+        <location filename="settingsdialog.cpp" line="242"/>
         <source>Select image</source>
         <translation>Выберите изображение</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="200"/>
+        <location filename="settingsdialog.cpp" line="243"/>
         <source>Image files (*.png *.bmp *.jpeg *.jpg)</source>
         <translation>Файлы изображений (*.png *.bmp *.jpeg *.jpg)</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.cpp" line="250"/>
+        <source>Select sound</source>
+        <translation>Выберите звук</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.cpp" line="251"/>
+        <source>Sound file (*.wav)</source>
+        <translation>Звуковой файл (*.wav)</translation>
     </message>
 </context>
 <context>
     <name>TrayIcon</name>
     <message>
-        <location filename="trayicon.cpp" line="23"/>
+        <location filename="trayicon.cpp" line="24"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="trayicon.cpp" line="25"/>
+        <location filename="trayicon.cpp" line="26"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
