@@ -1,4 +1,5 @@
 #include <QPixmap>
+#include <QDesktopWidget>
 
 #include "restdialog.h"
 
@@ -30,6 +31,20 @@ void RestDialog::setImage()
     QPixmap image(imagePath);
     if (image.isNull())
         return;
+
+    // check that image is not bigger than screen resolution
+    QSize imageSize = image.size();
+    int screenWidth = QApplication::desktop()->width();
+    int screenHeight = QApplication::desktop()->height();
+    if ((imageSize.height() >= screenHeight) ||
+            (imageSize.width() >= screenWidth))
+    {
+        // let's scale it
+        image = image.scaled((screenWidth - width() - 50),
+                             (screenHeight - height() - 50),
+                             Qt::KeepAspectRatio);
+    }
+
     ui_restDialog->imageLabel->setPixmap(image);
 }
 
