@@ -24,6 +24,6 @@ TRANSLATIONS = \
 unix:LIBS += -lXss
 
 # strict compiler flags
-unix {
+*g++* {
     QMAKE_CXXFLAGS += -Wall -Wextra -Werror
 }
