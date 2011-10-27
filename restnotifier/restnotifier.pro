@@ -20,6 +20,9 @@ FORMS += \
 TRANSLATIONS = \
     restnotifier_ru.ts
 
+OTHER_FILES += \
+    restnotifier.rc
+
 # X Screensaver extensions (needed for idle time function on linux)
 unix:LIBS += -lXss
 
@@ -27,3 +30,6 @@ unix:LIBS += -lXss
 *g++* {
     QMAKE_CXXFLAGS += -Wall -Wextra -Werror
 }
+
+# Set application icon on windows
+win32:RC_FILE += restnotifier.rc
