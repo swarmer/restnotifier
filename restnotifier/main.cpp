@@ -7,17 +7,12 @@
 #include "trayicon.h"
 
 
-
-int main(int argc, char **argv)
+void setLanguage()
 {
-    QApplication app(argc, argv);
-    QApplication::setOrganizationName("Restnotifier");
-    app.setQuitOnLastWindowClosed(false);
-
-    // Set language
     QSettings settings;
     QString lang;
-    QTranslator translator, qtTranslator;
+    QTranslator *translator = new QTranslator;
+    QTranslator *qtTranslator = new QTranslator;
     if (settings.contains("lang"))
         lang = settings.value("lang").toString();
     else
@@ -29,20 +24,31 @@ int main(int argc, char **argv)
     {
         QLocale::setDefault(QLocale("ru"));
 
+        bool ok;
         // install qt translator
-#if defined Q_OS_WIN
-        const QString loc;
-#else
         const QString loc = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-#endif
-        qtTranslator.load("qt_ru", loc);
-        app.installTranslator(&qtTranslator);
+        ok = qtTranslator->load("qt_ru");
+        if (!ok)
+            ok = qtTranslator->load("qt_ru", loc);
+        if (ok)
+            qApp->installTranslator(qtTranslator);
 
         // install app translator
-        QString translationsPath = settings.value("tr_path", QString()).toString();
-        translator.load("restnotifier_ru", translationsPath);
-        app.installTranslator(&translator);
+        ok = translator->load("restnotifier_ru");
+        if (!ok)
+            ok = translator->load("restnotifier_ru", "/usr/share/restnotifier");
+        if (ok)
+            qApp->installTranslator(translator);
     }
+}
+
+int main(int argc, char **argv)
+{
+    QApplication app(argc, argv);
+    QApplication::setOrganizationName("Restnotifier");
+    app.setQuitOnLastWindowClosed(false);
+
+    setLanguage();
 
     TrayIcon *trayIcon = new TrayIcon();
     trayIcon->show();
