@@ -17,10 +17,12 @@ int getIdleSecs()
 // linux
 #if defined Q_WS_X11
     int code, idle_sec;
-    XScreenSaverInfo *ssinfo = XScreenSaverAllocInfo();
+    XScreenSaverInfo *ssinfo = 0;
+    Display *display = 0;
+    ssinfo = XScreenSaverAllocInfo();
     if (!ssinfo)
         goto fail;
-    Display *display = XOpenDisplay(0);
+    display = XOpenDisplay(0);
     if (!display)
         goto fail;
     code = XScreenSaverQueryInfo(display, DefaultRootWindow(display), ssinfo);
