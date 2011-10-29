@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 2.8)
 
 project(restnotifier)
 
+# Plugins for compiler options checking
+include(CheckCCompilerFlag)
+include(CheckCXXCompilerFlag)
+
 
 # Setup Qt
 find_package(Qt4 REQUIRED)
@@ -46,12 +50,26 @@ add_executable(restnotifier
                 ${restnotifier_RESOURCES_RCC})
 
 
+# Disable console window on windows
+if(MINGW)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
+endif()
+
+# Set strict compiler flags if possible
+foreach(FLAG -Wall -Wextra -Werror)
+    CHECK_CXX_COMPILER_FLAG(${FLAG} CXX_OK)
+    CHECK_C_COMPILER_FLAG(${FLAG} C_OK)
+    if(${CXX_OK} AND ${C_OK})
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FLAG}")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FLAG}")
+    endif()
+endforeach()
+
 # Set linking options
 # And link to libxss if on unix
 set(LIBS ${QT_LIBRARIES})
 if(UNIX)
-    set(LIBS ${QT_LIBRARIES} -lXss)
+    list(APPEND LIBS -lXss)
 endif()
 
-target_link_libraries(restnotifier
-                        ${LIBS})
+target_link_libraries(restnotifier ${LIBS})
