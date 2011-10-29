@@ -1,7 +1,8 @@
 *~
 ~*
-*.pro.user
+*.user
 build_debug
 build_release
+build
 .directory
 
