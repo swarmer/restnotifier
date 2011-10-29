@@ -35,19 +35,14 @@ set(restnotifier_FORMS
 set(restnotifier_RESOURCES
         icons.qrc)
 
+set(restnotifier_TRANSLATIONS
+        restnotifier_ru.ts)
+
 
 # Run Qt preprocessors
 QT4_WRAP_CPP(restnotifier_HEADERS_MOC ${restnotifier_HEADERS})
 QT4_WRAP_UI(restnotifier_FORMS_HEADERS ${restnotifier_FORMS})
 QT4_ADD_RESOURCES(restnotifier_RESOURCES_RCC ${restnotifier_RESOURCES})
-
-
-# Set main build target
-add_executable(restnotifier
-                ${restnotifier_SOURCES}
-                ${restnotifier_HEADERS_MOC}
-                ${restnotifier_FORMS_HEADERS}
-                ${restnotifier_RESOURCES_RCC})
 
 
 # Disable console window on windows
@@ -71,5 +66,18 @@ set(LIBS ${QT_LIBRARIES})
 if(UNIX)
     list(APPEND LIBS -lXss)
 endif()
+
+
+# Build .qm translations
+QT4_ADD_TRANSLATION(QM_FILES ${restnotifier_TRANSLATIONS})
+
+
+# Set main build target
+add_executable(restnotifier
+                ${restnotifier_SOURCES}
+                ${restnotifier_HEADERS_MOC}
+                ${restnotifier_FORMS_HEADERS}
+                ${restnotifier_RESOURCES_RCC}
+                ${QM_FILES})
 
 target_link_libraries(restnotifier ${LIBS})
