@@ -45,6 +45,11 @@ QT4_WRAP_UI(restnotifier_FORMS_HEADERS ${restnotifier_FORMS})
 QT4_ADD_RESOURCES(restnotifier_RESOURCES_RCC ${restnotifier_RESOURCES})
 
 
+# Make a build configuration header
+configure_file(buildconfig.h.in
+                buildconfig.h)
+
+
 # Disable console window on windows
 if(MINGW)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows")
