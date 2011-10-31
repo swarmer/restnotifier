@@ -13,7 +13,7 @@ extern "C" int getIdleSecs(); // idletime.c
 TrayIcon::TrayIcon(QObject *parent) :
     QSystemTrayIcon(parent)
 {
-    icon = QSharedPointer<QIcon>(new QIcon(":/icons/cloud.png"));
+    icon = QSharedPointer<QIcon>(new QIcon(":/icons/restnotifier.png"));
     menu = QSharedPointer<QMenu>(new QMenu);
     isPostponedNow = false;
 
