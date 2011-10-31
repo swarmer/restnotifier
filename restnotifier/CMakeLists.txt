@@ -81,3 +81,21 @@ add_executable(restnotifier
                 ${QM_FILES})
 
 target_link_libraries(restnotifier ${LIBS})
+
+
+# Installation rules
+install(FILES restnotifier.desktop
+        DESTINATION share/applications)
+
+install(FILES icons/restnotifier-48x48.png
+        DESTINATION /usr/share/icons/hicolor/48x48/apps
+        RENAME restnotifier.png)
+
+install(FILES icons/restnotifier.png
+        DESTINATION /usr/share/icons/hicolor/128x128/apps)
+
+install(FILES ${QM_FILES}
+        DESTINATION share/restnotifier)
+
+install(TARGETS restnotifier DESTINATION bin)
+
