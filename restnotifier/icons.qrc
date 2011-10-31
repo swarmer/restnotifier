@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>cloud.png</file>
-        <file>Actions-configure-icon.png</file>
-        <file>Actions-application-exit-icon.png</file>
+        <file>icons/cloud.png</file>
+        <file>icons/Actions-application-exit-icon.png</file>
+        <file>icons/Actions-configure-icon.png</file>
     </qresource>
 </RCC>
