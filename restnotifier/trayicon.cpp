@@ -13,14 +13,14 @@ extern "C" int getIdleSecs(); // idletime.c
 TrayIcon::TrayIcon(QObject *parent) :
     QSystemTrayIcon(parent)
 {
-    icon = QSharedPointer<QIcon>(new QIcon(":/cloud.png"));
+    icon = QSharedPointer<QIcon>(new QIcon(":/icons/restnotifier.png"));
     menu = QSharedPointer<QMenu>(new QMenu);
     isPostponedNow = false;
 
     // setup context menu
     setIcon(*icon);
-    QIcon quitIcon(":/Actions-application-exit-icon.png");
-    QIcon settingsIcon(":/Actions-configure-icon.png");
+    QIcon quitIcon(":/icons/Actions-application-exit-icon.png");
+    QIcon settingsIcon(":/icons/Actions-configure-icon.png");
     menu->addAction(settingsIcon, tr("Settings"), this, SLOT(showSettings()));
     menu->addSeparator();
     menu->addAction(quitIcon, tr("Quit"), this, SIGNAL(quitScheduled()));
