@@ -6,13 +6,16 @@
 
 #include "trayicon.h"
 
+// Build configuration
+#include "buildconfig.h"
+
 
 void setLanguage()
 {
     QSettings settings;
     QString lang;
-    QTranslator *translator = new QTranslator;
-    QTranslator *qtTranslator = new QTranslator;
+    QTranslator *translator = new QTranslator(qApp);
+    QTranslator *qtTranslator = new QTranslator(qApp);
     if (settings.contains("lang"))
         lang = settings.value("lang").toString();
     else
@@ -35,8 +38,12 @@ void setLanguage()
 
         // install app translator
         ok = translator->load("restnotifier_ru");
+#ifdef Q_OS_UNIX
+        // PREFIX_PATH is defined in buildconfig.h
+        const QString translationsPath(PREFIX_PATH"/share/restnotifier");
         if (!ok)
-            ok = translator->load("restnotifier_ru", "/usr/share/restnotifier");
+            ok = translator->load("restnotifier_ru", translationsPath);
+#endif
         if (ok)
             qApp->installTranslator(translator);
     }

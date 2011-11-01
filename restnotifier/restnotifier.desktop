@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Restnotifier
+GenericName=Reminds you to rest
+Comment=Reminds you to rest
+GenericName[ru]=Напоминает отдохнуть
+Comment[ru]=Напоминает отдохнуть
+Exec=restnotifier
+Icon=restnotifier
+Terminal=false
+Type=Application
+Categories=Qt;Utility;
