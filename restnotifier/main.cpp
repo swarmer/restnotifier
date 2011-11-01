@@ -14,8 +14,8 @@ void setLanguage()
 {
     QSettings settings;
     QString lang;
-    QTranslator *translator = new QTranslator;
-    QTranslator *qtTranslator = new QTranslator;
+    QTranslator *translator = new QTranslator(qApp);
+    QTranslator *qtTranslator = new QTranslator(qApp);
     if (settings.contains("lang"))
         lang = settings.value("lang").toString();
     else
