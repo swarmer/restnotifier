@@ -7,3 +7,13 @@ Oxygen icons (http://www.oxygen-icons.org/) are used:
 
 - Actions-application-exit-icon
 - Actions-configure-icon
+
+
+## Installation (Linux)
+    
+    mkdir build
+    cd build
+    cmake ../restnotifier -DCMAKE_BUILD_TYPE=Release
+    make
+    sudo make install
+
