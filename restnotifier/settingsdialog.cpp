@@ -70,7 +70,7 @@ void SettingsDialog::loadLanguageSettings()
     else
     {
         language = currentLocale.name();
-        language.truncate(lang.indexOf('_'));
+        language.truncate(language.indexOf('_'));
     }
     QComboBox *langBox = ui_settingsDialog->languageComboBox;
     if (language == "ru")
