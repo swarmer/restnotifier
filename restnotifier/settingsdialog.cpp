@@ -64,10 +64,14 @@ void SettingsDialog::loadSettings()
 void SettingsDialog::loadLanguageSettings()
 {
     QString language;
+    QLocale currentLocale;
     if (settings.contains("lang"))
         language = settings.value("lang").toString();
     else
-        language = QLocale::languageToString(QLocale().language());
+    {
+        language = currentLocale.name();
+        language.truncate(lang.indexOf('_'));
+    }
     QComboBox *langBox = ui_settingsDialog->languageComboBox;
     if (language == "ru")
         langBox->setCurrentIndex(langBox->findText(QString::fromUtf8("Русский")));
