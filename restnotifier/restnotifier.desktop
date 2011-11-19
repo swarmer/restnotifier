@@ -1,9 +1,9 @@
 [Desktop Entry]
 Name=Restnotifier
-GenericName=Reminds you to rest
-Comment=Reminds you to rest
-GenericName[ru]=Напоминает отдохнуть
-Comment[ru]=Напоминает отдохнуть
+GenericName=Resting notifier
+Comment=Resting notifier
+GenericName[ru]=Напоминатель об отдыхе
+Comment[ru]=Напоминатель об отдыхе
 Exec=restnotifier
 Icon=restnotifier
 Terminal=false
