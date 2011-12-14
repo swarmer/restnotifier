@@ -124,6 +124,7 @@ void SettingsDialog::loadMessageSettings()
         mt = MT_TRAY;
     switch (mt)
     {
+    default:
     case MT_TRAY:
         ui_settingsDialog->trayRadio->toggle();
         break;
@@ -135,14 +136,14 @@ void SettingsDialog::loadMessageSettings()
 
 void SettingsDialog::loadIntervalSettings()
 {
-    int interval; //minutes
+    int intervalMinutes;
     bool ok;
-    interval = settings.value("interval", 60).toInt(&ok);
+    intervalMinutes = settings.value("interval", 60).toInt(&ok);
     if (!ok)
-        interval = 60;
+        intervalMinutes = 60;
     int hours, minutes;
-    hours = interval / 60;
-    minutes = interval % 60;
+    hours = intervalMinutes / 60;
+    minutes = intervalMinutes % 60;
     QTime intervalTime(hours, minutes);
     ui_settingsDialog->intervalTime->setTime(intervalTime);
 }
@@ -222,10 +223,10 @@ void SettingsDialog::saveMessageSettings()
 
 void SettingsDialog::saveIntervalSettings()
 {
-    int interval; //minutes
+    int intervalMinutes;
     QTime time = ui_settingsDialog->intervalTime->time();
-    interval = (time.hour() * 60) + time.minute();
-    settings.setValue("interval", interval);
+    intervalMinutes = (time.hour() * 60) + time.minute();
+    settings.setValue("interval", intervalMinutes);
 }
 
 void SettingsDialog::saveSoundSettings()
@@ -265,6 +266,7 @@ void SettingsDialog::checkFilePaths()
 
 void SettingsDialog::checkFilePath(QLineEdit *lineEdit)
 {
+    // set line color to red if file doesn't exist
     QPalette palette = lineEdit->palette();
     QFileInfo info(lineEdit->text());
     if (!info.exists() || !info.isFile())

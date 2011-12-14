@@ -13,14 +13,13 @@ extern "C" int getIdleSecs(); // idletime.c
 TrayIcon::TrayIcon(QObject *parent) :
     QSystemTrayIcon(parent)
 {
-    icon = QSharedPointer<QIcon>(new QIcon(":/icons/restnotifier.png"));
     menu = QSharedPointer<QMenu>(new QMenu);
-    isPostponedNow = false;
 
     // setup context menu
-    setIcon(*icon);
+    QIcon icon(":/icons/restnotifier.png");
     QIcon quitIcon(":/icons/Actions-application-exit-icon.png");
     QIcon settingsIcon(":/icons/Actions-configure-icon.png");
+    setIcon(icon);
     menu->addAction(settingsIcon, tr("Settings"), this, SLOT(showSettings()));
     menu->addSeparator();
     menu->addAction(quitIcon, tr("Quit"), this, SIGNAL(quitScheduled()));
@@ -34,7 +33,6 @@ TrayIcon::TrayIcon(QObject *parent) :
 
 void TrayIcon::showSettings()
 {
-    // show dialog
     QPointer<SettingsDialog> settingsDialog(new SettingsDialog);
     settingsDialog->exec();
     delete settingsDialog;
@@ -97,15 +95,9 @@ void TrayIcon::showRestMessage()
     // postpone if needed
     const int postponeTime = 60000 * 5; // 5 min to msec
     if (postpone)
-    {
         timer->start(postponeTime);
-        isPostponedNow = true;
-    }
     else
-    {
         timer->start(getIntervalMsecs());
-        isPostponedNow = false;
-    }
 }
 
 bool TrayIcon::canNotify()

@@ -66,10 +66,10 @@ foreach(FLAG -Wall -Wextra -Werror)
 endforeach()
 
 # Set linking options
-# And link to libxss if on unix
+# And link to libXss and libX11 if on unix
 set(LIBS ${QT_LIBRARIES})
 if(UNIX)
-    list(APPEND LIBS -lXss)
+    list(APPEND LIBS -lX11 -lXss)
 endif()
 
 

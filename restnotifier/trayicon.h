@@ -13,7 +13,6 @@ class TrayIcon : public QSystemTrayIcon
     Q_OBJECT
 
 // PRIVATE
-    QSharedPointer<QIcon> icon;
     QSharedPointer<QMenu> menu;
     QSettings settings;
     QTimer *timer;
@@ -23,7 +22,6 @@ class TrayIcon : public QSystemTrayIcon
     bool showDialogMessage(); // returns true if message was postponed
     void playSound();
     bool canNotify();
-    bool isPostponedNow;
 
 private slots:
     void showSettings();
