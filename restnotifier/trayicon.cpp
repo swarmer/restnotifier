@@ -33,9 +33,16 @@ TrayIcon::TrayIcon(QObject *parent) :
 
 void TrayIcon::showSettings()
 {
+    int interval1 = getIntervalMsecs();
     QPointer<SettingsDialog> settingsDialog(new SettingsDialog);
     settingsDialog->exec();
     delete settingsDialog;
+    int interval2 = getIntervalMsecs();
+    if (interval1 != interval2)
+    {
+        timer->stop();
+        timer->start(interval2);
+    }
 }
 
 void TrayIcon::showTrayMessage()
