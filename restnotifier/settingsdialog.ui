@@ -348,14 +348,18 @@ p, li { white-space: pre-wrap; }
   </layout>
  </widget>
  <tabstops>
+  <tabstop>intervalTime</tabstop>
   <tabstop>messageLine</tabstop>
   <tabstop>idleGroupBox</tabstop>
+  <tabstop>idleTimeEdit</tabstop>
   <tabstop>trayRadio</tabstop>
   <tabstop>dialogRadio</tabstop>
+  <tabstop>soundGroupBox</tabstop>
+  <tabstop>soundLineEdit</tabstop>
+  <tabstop>soundPathButton</tabstop>
   <tabstop>imageGroupBox</tabstop>
   <tabstop>imageLineEdit</tabstop>
   <tabstop>imagePathButton</tabstop>
-  <tabstop>intervalTime</tabstop>
   <tabstop>languageComboBox</tabstop>
   <tabstop>dialogButtonBox</tabstop>
  </tabstops>
