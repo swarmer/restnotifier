@@ -10,6 +10,7 @@ RestDialog::RestDialog(QWidget *parent) :
     Qt::WindowFlags flags = windowFlags();
     setWindowFlags((flags & ~Qt::WindowContextHelpButtonHint) |
                    Qt::WindowStaysOnTopHint);
+    setWindowState(Qt::WindowFullScreen);
     ui_restDialog = QSharedPointer<Ui::RestDialog>(new Ui::RestDialog());
     ui_restDialog->setupUi(this);
 
@@ -21,8 +22,6 @@ RestDialog::RestDialog(QWidget *parent) :
     bool useImage = settings.value("use_img", false).toBool();
     if (useImage)
         setImage();
-
-    activateWindow();
 }
 
 void RestDialog::setImage()
