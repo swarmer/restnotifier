@@ -5,7 +5,8 @@
 #include <QSharedPointer>
 #include <QIcon>
 #include <QMenu>
-#include <QSettings>
+
+#include "settings.h"
 
 
 class TrayIcon : public QSystemTrayIcon
@@ -14,7 +15,7 @@ class TrayIcon : public QSystemTrayIcon
 
 // PRIVATE
     QSharedPointer<QMenu> menu;
-    QSettings settings;
+    Settings settings;
     QTimer *timer;
 
     int getIntervalMsecs() const;

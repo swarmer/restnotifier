@@ -63,15 +63,7 @@ void SettingsDialog::loadSettings()
 // loading functions
 void SettingsDialog::loadLanguageSettings()
 {
-    QString language;
-    QLocale currentLocale;
-    if (settings.contains("lang"))
-        language = settings.value("lang").toString();
-    else
-    {
-        language = currentLocale.name();
-        language.truncate(language.indexOf('_'));
-    }
+    QString language = settings.language();
     QComboBox *langBox = ui_settingsDialog->languageComboBox;
     if (language == "ru")
         langBox->setCurrentIndex(langBox->findText(QString::fromUtf8("Русский")));
@@ -82,46 +74,33 @@ void SettingsDialog::loadLanguageSettings()
 void SettingsDialog::loadImageSettings()
 {
     // set whether to use image
-    bool useImage = settings.value("use_img", false).toBool();
+    bool useImage = settings.useImage();
     ui_settingsDialog->imageGroupBox->setChecked(useImage);
 
     // set image file path
-    QString imagePath = settings.value("img_path", QString()).toString();
+    QString imagePath = settings.imagePath();
     ui_settingsDialog->imageLineEdit->setText(imagePath);
 }
 
 void SettingsDialog::loadIdleSettings()
 {
     // set whether to check user idle time
-    bool checkIdle = settings.value("check_idle", true).toBool();
+    bool checkIdle = settings.checkIdle();
     ui_settingsDialog->idleGroupBox->setChecked(checkIdle);
 
     // set idle time limit
-    bool ok;
-    int seconds = settings.value("idle_limit", 60).toInt(&ok);
-    if (!ok)
-        seconds = 60;
-    int hours, minutes;
-    hours = seconds / 3600;
-    seconds %= 3600;
-    minutes = seconds / 60;
-    seconds %= 60;
-    QTime idleTime(hours, minutes, seconds);
+    QTime idleTime = settings.idleLimit();
     ui_settingsDialog->idleTimeEdit->setTime(idleTime);
 }
 
 void SettingsDialog::loadMessageSettings()
 {
     // set message
-    QString message = settings.value("message",
-                                      tr("It's time to rest")).toString();
+    QString message = settings.message();
     ui_settingsDialog->messageLine->setText(message);
 
     // set message type
-    bool ok;
-    MessageType mt = (MessageType)(settings.value("m_type", 0).toInt(&ok));
-    if (!ok)
-        mt = MT_TRAY;
+    MessageType mt = settings.messageType();
     switch (mt)
     {
     default:
@@ -136,26 +115,18 @@ void SettingsDialog::loadMessageSettings()
 
 void SettingsDialog::loadIntervalSettings()
 {
-    int intervalMinutes;
-    bool ok;
-    intervalMinutes = settings.value("interval", 60).toInt(&ok);
-    if (!ok)
-        intervalMinutes = 60;
-    int hours, minutes;
-    hours = intervalMinutes / 60;
-    minutes = intervalMinutes % 60;
-    QTime intervalTime(hours, minutes);
+    QTime intervalTime = settings.interval();
     ui_settingsDialog->intervalTime->setTime(intervalTime);
 }
 
 void SettingsDialog::loadSoundSettings()
 {
     // set whether to use sound
-    bool useSound = settings.value("use_sound", false).toBool();
+    bool useSound = settings.useSound();
     ui_settingsDialog->soundGroupBox->setChecked(useSound);
 
     // set sound file path
-    QString soundPath = settings.value("snd_path", QString()).toString();
+    QString soundPath = settings.soundPath();
     ui_settingsDialog->soundLineEdit->setText(soundPath);
 }
 // ^ loading functions
@@ -177,67 +148,63 @@ void SettingsDialog::saveLanguageSettings()
     if (ui_settingsDialog->languageComboBox->currentText() ==
             QString::fromUtf8("Русский"))
     {
-        settings.setValue("lang", "ru");
+        settings.setLanguage("ru");
     }
     else
-        settings.setValue("lang", "en");
+        settings.setLanguage("en");
 }
 
 void SettingsDialog::saveImageSettings()
 {
     // save whether to use image
     bool useImage = ui_settingsDialog->imageGroupBox->isChecked();
-    settings.setValue("use_img", useImage);
+    settings.setUseImage(useImage);
 
     // save image file path
     QString imagePath = ui_settingsDialog->imageLineEdit->text();
-    settings.setValue("img_path", imagePath);
+    settings.setImagePath(imagePath);
 }
 
 void SettingsDialog::saveIdleSettings()
 {
     // save whether to check user idle time
     bool checkIdle = ui_settingsDialog->idleGroupBox->isChecked();
-    settings.setValue("check_idle", checkIdle);
+    settings.setCheckIdle(checkIdle);
 
     // save idle time limit
     QTime idleLimit = ui_settingsDialog->idleTimeEdit->time();
-    int seconds = (idleLimit.hour() * 3600) + (idleLimit.minute() * 60) +
-            idleLimit.second();
-    settings.setValue("idle_limit", seconds);
+    settings.setIdleLimit(idleLimit);
 }
 
 void SettingsDialog::saveMessageSettings()
 {
     // save message
-    settings.setValue("message", ui_settingsDialog->messageLine->text());
+    settings.setMessage(ui_settingsDialog->messageLine->text());
 
     // save message type
-    int m_type = 0;
+    MessageType m_type = MT_DIALOG;
     if (ui_settingsDialog->trayRadio->isChecked())
-        m_type = (int)MT_TRAY;
+        m_type = MT_TRAY;
     else if (ui_settingsDialog->dialogRadio->isChecked())
-        m_type = (int)MT_DIALOG;
-    settings.setValue("m_type", m_type);
+        m_type = MT_DIALOG;
+    settings.setMessageType(m_type);
 }
 
 void SettingsDialog::saveIntervalSettings()
 {
-    int intervalMinutes;
     QTime time = ui_settingsDialog->intervalTime->time();
-    intervalMinutes = (time.hour() * 60) + time.minute();
-    settings.setValue("interval", intervalMinutes);
+    settings.setInterval(time);
 }
 
 void SettingsDialog::saveSoundSettings()
 {
     // save whether to use sound
     bool useSound = ui_settingsDialog->soundGroupBox->isChecked();
-    settings.setValue("use_sound", useSound);
+    settings.setUseSound(useSound);
 
     // save sound file path
     QString soundPath = ui_settingsDialog->soundLineEdit->text();
-    settings.setValue("snd_path", soundPath);
+    settings.setSoundPath(soundPath);
 }
 // ^ saving functions
 

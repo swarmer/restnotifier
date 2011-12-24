@@ -2,9 +2,9 @@
 #define RESTDIALOG_H
 
 #include <QDialog>
-#include <QSettings>
 #include <QSharedPointer>
 
+#include "settings.h"
 #include "ui_restdialog.h"
 
 
@@ -13,7 +13,7 @@ class RestDialog : public QDialog
     Q_OBJECT
 
 // PRIVATE
-    QSettings settings;
+    Settings settings;
     QSharedPointer<Ui::RestDialog> ui_restDialog;
 
     void setImage();
