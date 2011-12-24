@@ -3,18 +3,23 @@
 #include "settings.h"
 
 
-int Settings::interval() const
+QTime Settings::interval() const
 {
     bool ok;
     int intervalMinutes = qsettings.value("interval", 60).toInt(&ok);
     if (!ok)
         intervalMinutes = 60;
-    return intervalMinutes;
+    int hours, minutes;
+    hours = intervalMinutes / 60;
+    minutes = intervalMinutes % 60;
+    QTime intervalTime(hours, minutes);
+    return intervalTime;
 }
 
-void Settings::setInterval(int minutes)
+void Settings::setInterval(QTime interval)
 {
-    qsettings.setValue("interval", minutes);
+    int intervalMinutes = (interval.hour() * 60) + interval.minute();
+    qsettings.setValue("interval", intervalMinutes);
 }
 
 
@@ -98,17 +103,25 @@ void Settings::setCheckIdle(bool check)
 }
 
 
-int Settings::idleLimit() const
+QTime Settings::idleLimit() const
 {
     bool ok;
     int seconds = qsettings.value("idle_limit", 60).toInt(&ok);
     if (!ok)
         seconds = 60;
-    return seconds;
+    int hours, minutes;
+    hours = seconds / 3600;
+    seconds %= 3600;
+    minutes = seconds / 60;
+    seconds %= 60;
+    QTime idleTime(hours, minutes, seconds);
+    return idleTime;
 }
 
-void Settings::setIdleLimit(int seconds)
+void Settings::setIdleLimit(QTime idleLimit)
 {
+    int seconds = (idleLimit.hour() * 3600) + (idleLimit.minute() * 60) +
+            idleLimit.second();
     qsettings.setValue("idle_limit", seconds);
 }
 

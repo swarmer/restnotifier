@@ -2,6 +2,7 @@
 #define SETTINGS_H
 
 #include <QSettings>
+#include <QTime>
 
 
 enum MessageType
@@ -18,9 +19,8 @@ class Settings
 
 // PUBLIC
 public:
-    // minutes
-    int interval() const;
-    void setInterval(int minutes);
+    QTime interval() const;
+    void setInterval(QTime interval);
 
     QString message() const;
     void setMessage(const QString& message);
@@ -40,9 +40,8 @@ public:
     bool checkIdle() const;
     void setCheckIdle(bool check);
 
-    // seconds
-    int idleLimit() const;
-    void setIdleLimit(int seconds);
+    QTime idleLimit() const;
+    void setIdleLimit(QTime idleLimit);
 
     bool useSound() const;
     void setUseSound(bool use);
