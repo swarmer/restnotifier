@@ -1,28 +1,19 @@
 #include <QApplication>
-#include <QSettings>
 #include <QLocale>
 #include <QTranslator>
 #include <QLibraryInfo>
 
+#include "settings.h"
 #include "trayicon.h"
-
-// Build configuration
 #include "buildconfig.h"
 
 
 void setLanguage()
 {
-    QSettings settings;
-    QString lang;
+    Settings settings;
     QTranslator *translator = new QTranslator(qApp);
     QTranslator *qtTranslator = new QTranslator(qApp);
-    if (settings.contains("lang"))
-        lang = settings.value("lang").toString();
-    else
-    {
-        lang = QLocale::system().name();
-        lang.truncate(lang.indexOf('_'));
-    }
+    QString lang = settings.language();
     if (lang == "ru")
     {
         QLocale::setDefault(QLocale("ru"));
