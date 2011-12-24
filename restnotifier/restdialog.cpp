@@ -15,19 +15,17 @@ RestDialog::RestDialog(QWidget *parent) :
     ui_restDialog->setupUi(this);
 
     // set message
-    QString message = settings.value("message", QString()).toString();
+    QString message = settings.message();
     ui_restDialog->messageLabel->setText(message);
 
     // possibly set image
-    bool useImage = settings.value("use_img", false).toBool();
-    if (useImage)
+    if (settings.useImage())
         setImage();
 }
 
 void RestDialog::setImage()
 {
-    QString imagePath = settings.value("img_path", QString()).toString();
-    QPixmap image(imagePath);
+    QPixmap image(settings.imagePath());
     if (image.isNull())
         return;
 

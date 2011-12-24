@@ -47,7 +47,7 @@ void TrayIcon::showSettings()
 
 void TrayIcon::showTrayMessage()
 {
-    QString message = settings.value("message", "").toString();
+    QString message = settings.message();
     if (message.size() > 100)
         message = "";
     showMessage("Restnotifier", message, Information);
@@ -67,8 +67,7 @@ void TrayIcon::playSound()
 {
     if (QSound::isAvailable())
     {
-        QString soundPath = settings.value("snd_path", QString()).toString();
-        QSound::play(soundPath);
+        QSound::play(settings.soundPath());
     }
 }
 
@@ -81,12 +80,11 @@ void TrayIcon::showRestMessage()
     if (canNotify())
     {
         // sound notification
-        bool useSound = settings.value("use_sound", false).toBool();
-        if (useSound)
+        if (settings.useSound())
             playSound();
 
         // usual message
-        MessageType mt = (MessageType)(settings.value("m_type", 0).toInt());
+        MessageType mt = settings.messageType();
         switch (mt)
         {
         default:
@@ -111,17 +109,14 @@ bool TrayIcon::canNotify()
 {
     // check if message should be shown
     bool canShow = true;
-    bool checkIdle = settings.value("check_idle", true).toBool();
-    if (checkIdle)
+    if (settings.checkIdle())
     {
         int idleSec = getIdleSecs();
         if (idleSec != -1)
         {
-            bool ok;
-            int idleLimit = settings.value("idle_limit", 60).toInt(&ok);
-            if (!ok)
-                idleLimit = 60;
-            if (idleSec >= idleLimit)
+            QTime idleLimitTime = settings.idleLimit();
+            int idleLimitSec = QTime(0, 0).msecsTo(idleLimitTime) / 1000;
+            if (idleSec >= idleLimitSec)
                 canShow = false;
         }
     }
@@ -130,10 +125,7 @@ bool TrayIcon::canNotify()
 
 int TrayIcon::getIntervalMsecs() const
 {
-    bool ok;
-    int interval = settings.value("interval", 60).toInt(&ok);
-    if ((!ok) || (interval > 2000))
-        interval = 60;
-    interval *= 60000; // to msec
-    return interval;
+    QTime interval = settings.interval();
+    int intervalMsec = QTime(0, 0).msecsTo(interval);
+    return intervalMsec;
 }

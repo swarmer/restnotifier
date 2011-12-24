@@ -20,13 +20,15 @@ set(restnotifier_SOURCES
         trayicon.cpp
         settingsdialog.cpp
         restdialog.cpp
+        settings.cpp
         idletime.c
         restnotifier.rc)
 
 set(restnotifier_HEADERS
         trayicon.h
         settingsdialog.h
-        restdialog.h)
+        restdialog.h
+        settings.h)
 
 set(restnotifier_FORMS
         settingsdialog.ui
