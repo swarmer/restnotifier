@@ -2,17 +2,10 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
-#include <QSettings>
 #include <QSharedPointer>
 
+#include "settings.h"
 #include "ui_settingsdialog.h"
-
-
-enum MessageType
-{
-    MT_TRAY = 0,
-    MT_DIALOG = 1
-};
 
 
 class SettingsDialog : public QDialog
@@ -20,7 +13,7 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 // PRIVATE
-    QSettings settings;
+    Settings settings;
     QSharedPointer<Ui::SettingsDialog> ui_settingsDialog;
 
     void loadSettings();
