@@ -25,9 +25,6 @@ public:
     QString message() const;
     void setMessage(const QString& message);
 
-    MessageType messageType() const;
-    void setMessageType(MessageType mt);
-
     bool useImage() const;
     void setUseImage(bool use);
 

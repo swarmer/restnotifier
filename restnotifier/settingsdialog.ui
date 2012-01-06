@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
-    <height>482</height>
+    <width>354</width>
+    <height>396</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -189,29 +189,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Message type</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QRadioButton" name="trayRadio">
-        <property name="text">
-         <string>System tray message</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="dialogRadio">
-        <property name="text">
-         <string>Dialog box</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
     <widget class="QGroupBox" name="soundGroupBox">
      <property name="title">
       <string>Play sound</string>
@@ -352,8 +329,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>messageLine</tabstop>
   <tabstop>idleGroupBox</tabstop>
   <tabstop>idleTimeEdit</tabstop>
-  <tabstop>trayRadio</tabstop>
-  <tabstop>dialogRadio</tabstop>
   <tabstop>soundGroupBox</tabstop>
   <tabstop>soundLineEdit</tabstop>
   <tabstop>soundPathButton</tabstop>

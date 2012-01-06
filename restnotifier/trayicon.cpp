@@ -45,14 +45,6 @@ void TrayIcon::showSettings()
     }
 }
 
-void TrayIcon::showTrayMessage()
-{
-    QString message = settings.message();
-    if (message.size() > 100)
-        message = "";
-    showMessage("Restnotifier", message, Information);
-}
-
 // returns true if message was postponed
 bool TrayIcon::showDialogMessage()
 {
@@ -84,17 +76,7 @@ void TrayIcon::showRestMessage()
             playSound();
 
         // usual message
-        MessageType mt = settings.messageType();
-        switch (mt)
-        {
-        default:
-        case MT_TRAY:
-            showTrayMessage();
-            break;
-        case MT_DIALOG:
-            postpone = showDialogMessage();
-            break;
-        }
+        postpone = showDialogMessage();
     }
 
     // postpone if needed

@@ -98,19 +98,6 @@ void SettingsDialog::loadMessageSettings()
     // set message
     QString message = settings.message();
     ui_settingsDialog->messageLine->setText(message);
-
-    // set message type
-    MessageType mt = settings.messageType();
-    switch (mt)
-    {
-    default:
-    case MT_TRAY:
-        ui_settingsDialog->trayRadio->toggle();
-        break;
-    case MT_DIALOG:
-        ui_settingsDialog->dialogRadio->toggle();
-        break;
-    }
 }
 
 void SettingsDialog::loadIntervalSettings()
@@ -180,14 +167,6 @@ void SettingsDialog::saveMessageSettings()
 {
     // save message
     settings.setMessage(ui_settingsDialog->messageLine->text());
-
-    // save message type
-    MessageType m_type = MT_DIALOG;
-    if (ui_settingsDialog->trayRadio->isChecked())
-        m_type = MT_TRAY;
-    else if (ui_settingsDialog->dialogRadio->isChecked())
-        m_type = MT_DIALOG;
-    settings.setMessageType(m_type);
 }
 
 void SettingsDialog::saveIntervalSettings()

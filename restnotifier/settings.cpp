@@ -35,21 +35,6 @@ void Settings::setMessage(const QString& message)
 }
 
 
-MessageType Settings::messageType() const
-{
-    bool ok;
-    MessageType mt = (MessageType)(qsettings.value("m_type", 0).toInt(&ok));
-    if (!ok)
-        mt = MT_TRAY;
-    return mt;
-}
-
-void Settings::setMessageType(MessageType mt)
-{
-    qsettings.setValue("m_type", (int)mt);
-}
-
-
 bool Settings::useImage() const
 {
     return qsettings.value("use_img", false).toBool();

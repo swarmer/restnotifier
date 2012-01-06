@@ -19,7 +19,6 @@ class TrayIcon : public QSystemTrayIcon
     QTimer *timer;
 
     int getIntervalMsecs() const;
-    void showTrayMessage();
     bool showDialogMessage(); // returns true if message was postponed
     void playSound();
     bool canNotify();
