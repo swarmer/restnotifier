@@ -2,11 +2,15 @@
 #define LOCKINGRESTDIALOG_H
 
 #include <QEventLoop>
+#include <QDialog>
+#include <QSharedPointer>
+#include <QVBoxLayout>
 
-#include "restdialog.h"
+#include "messagecontent.h"
+#include "ui_lockingrestdialog.h"
 
 
-class LockingRestDialog : public RestDialog
+class LockingRestDialog : public QDialog
 {
     Q_OBJECT
 
@@ -18,6 +22,8 @@ public:
 // PRIVATE
 private:
     QEventLoop *eventLoop;
+    QSharedPointer<MessageContent> messageContent;
+    QSharedPointer<Ui::LockingRestDialog> ui;
 
 private slots:
     void lockScreen();

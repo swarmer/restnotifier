@@ -23,6 +23,7 @@ set(restnotifier_SOURCES
         lockingrestdialog.cpp
         settings.cpp
         idletime.c
+        messagecontent.cpp
         restnotifier.rc)
 
 set(restnotifier_HEADERS
@@ -30,11 +31,14 @@ set(restnotifier_HEADERS
         settingsdialog.h
         restdialog.h
         lockingrestdialog.h
-        settings.h)
+        settings.h
+        messagecontent.h)
 
 set(restnotifier_FORMS
         settingsdialog.ui
-        restdialog.ui)
+        restdialog.ui
+        messagecontent.ui
+        lockingrestdialog.ui)
 
 set(restnotifier_RESOURCES
         icons.qrc)

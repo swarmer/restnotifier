@@ -1,4 +1,5 @@
 #include <QShowEvent>
+#include <QLayout>
 #include "lockingrestdialog.h"
 
 #if defined Q_WS_X11
@@ -9,9 +10,15 @@
 
 
 LockingRestDialog::LockingRestDialog(QWidget *parent) :
-    RestDialog(parent)
+    QDialog(parent)
 {
+    messageContent = QSharedPointer<MessageContent>(new MessageContent);
+    ui = QSharedPointer<Ui::LockingRestDialog>(new Ui::LockingRestDialog);
+    ui->setupUi(this);
     setWindowState(Qt::WindowFullScreen);
+    QVBoxLayout *vlayout = dynamic_cast<QVBoxLayout*>(layout());
+    vlayout->insertWidget(0, messageContent.data());
+    adjustSize();
     eventLoop = new QEventLoop(this);
 }
 
@@ -23,7 +30,8 @@ void LockingRestDialog::executeLocking()
     // process events so that qt shows the window
     // X keyboard locking magic doesn't work unless the window is visible
     eventLoop->processEvents();
-    lockScreen();
+    // uncomment that later, when this dialog closes automatically
+    //lockScreen();
     eventLoop->exec();
 }
 
