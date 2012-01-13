@@ -6,6 +6,7 @@
 #include "trayicon.h"
 #include "settingsdialog.h"
 #include "restdialog.h"
+#include "lockingrestdialog.h"
 
 extern "C" int getIdleSecs(); // idletime.c
 
@@ -57,10 +58,9 @@ bool TrayIcon::showDialogMessage()
 
 void TrayIcon::showLockingMessage()
 {
-    QPointer<RestDialog> restDialog(new RestDialog);
-    restDialog->setWindowState(Qt::WindowFullScreen);
-    restDialog->exec();
-    delete restDialog;
+    QPointer<LockingRestDialog> lockingRestDialog(new LockingRestDialog);
+    lockingRestDialog->executeLocking();
+    delete lockingRestDialog;
 }
 
 void TrayIcon::playSound()
