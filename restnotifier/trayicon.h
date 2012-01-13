@@ -20,6 +20,7 @@ class TrayIcon : public QSystemTrayIcon
 
     int getIntervalMsecs() const;
     bool showDialogMessage(); // returns true if message was postponed
+    void showLockingMessage();
     void playSound();
     bool canNotify();
 

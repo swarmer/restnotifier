@@ -31,6 +31,12 @@ public:
     QString imagePath() const;
     void setImagePath(const QString& path);
 
+    bool lockScreen() const;
+    void setLockScreen(bool lock);
+
+    QTime lockTime() const;
+    void setLockTime(QTime lockTime);
+
     QString language() const;
     void setLanguage(const QString& language);
 

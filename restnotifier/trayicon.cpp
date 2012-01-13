@@ -55,6 +55,14 @@ bool TrayIcon::showDialogMessage()
     return postpone;
 }
 
+void TrayIcon::showLockingMessage()
+{
+    QPointer<RestDialog> restDialog(new RestDialog);
+    restDialog->setWindowState(Qt::WindowFullScreen);
+    restDialog->exec();
+    delete restDialog;
+}
+
 void TrayIcon::playSound()
 {
     if (QSound::isAvailable())
@@ -75,8 +83,10 @@ void TrayIcon::showRestMessage()
         if (settings.useSound())
             playSound();
 
-        // usual message
-        postpone = showDialogMessage();
+        if (settings.lockScreen())
+            showLockingMessage();
+        else
+            postpone = showDialogMessage();
     }
 
     // postpone if needed

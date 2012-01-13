@@ -58,6 +58,7 @@ void SettingsDialog::loadSettings()
     loadImageSettings();
     loadLanguageSettings();
     loadSoundSettings();
+    loadLockSettings();
 }
 
 // loading functions
@@ -116,6 +117,17 @@ void SettingsDialog::loadSoundSettings()
     QString soundPath = settings.soundPath();
     ui_settingsDialog->soundLineEdit->setText(soundPath);
 }
+
+void SettingsDialog::loadLockSettings()
+{
+    // set whether to lock the screen
+    bool lockScreen = settings.lockScreen();
+    ui_settingsDialog->lockGroupBox->setChecked(lockScreen);
+
+    // set lock time
+    QTime lockTime = settings.lockTime();
+    ui_settingsDialog->lockTime->setTime(lockTime);
+}
 // ^ loading functions
 
 
@@ -127,6 +139,7 @@ void SettingsDialog::saveSettings()
     saveImageSettings();
     saveLanguageSettings();
     saveSoundSettings();
+    saveLockSettings();
 }
 
 // saving functions
@@ -184,6 +197,17 @@ void SettingsDialog::saveSoundSettings()
     // save sound file path
     QString soundPath = ui_settingsDialog->soundLineEdit->text();
     settings.setSoundPath(soundPath);
+}
+
+void SettingsDialog::saveLockSettings()
+{
+    // save whether to lock the screen
+    bool lockScreen = ui_settingsDialog->lockGroupBox->isChecked();
+    settings.setLockScreen(lockScreen);
+
+    // save lock time
+    QTime lockTime = ui_settingsDialog->lockTime->time();
+    settings.setLockTime(lockTime);
 }
 // ^ saving functions
 

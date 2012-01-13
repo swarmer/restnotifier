@@ -57,6 +57,28 @@ void Settings::setImagePath(const QString& path)
 }
 
 
+bool Settings::lockScreen() const
+{
+    return qsettings.value("lock_screen", false).toBool();
+}
+
+void Settings::setLockScreen(bool lock)
+{
+    qsettings.setValue("lock_screen", lock);
+}
+
+
+QTime Settings::lockTime() const
+{
+    return qsettings.value("lock_time", QTime(0, 5)).toTime();
+}
+
+void Settings::setLockTime(QTime lockTime)
+{
+    qsettings.setValue("lock_time", lockTime);
+}
+
+
 QString Settings::language() const
 {
     QString language;
