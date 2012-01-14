@@ -17,7 +17,10 @@ LockingRestDialog::LockingRestDialog(QWidget *parent) :
     messageContent = new MessageContent(this);
     ui = QSharedPointer<Ui::LockingRestDialog>(new Ui::LockingRestDialog);
     ui->setupUi(this);
-    setWindowState(Qt::WindowFullScreen);
+
+    Qt::WindowFlags flags = windowFlags();
+    setWindowFlags(flags | Qt::WindowStaysOnTopHint);
+
     QVBoxLayout *vlayout = dynamic_cast<QVBoxLayout*>(layout());
     vlayout->insertWidget(0, messageContent);
     adjustSize();
@@ -33,7 +36,7 @@ LockingRestDialog::LockingRestDialog(QWidget *parent) :
 
 void LockingRestDialog::executeLocking()
 {
-    show();
+    showFullScreen();
     connect(this, SIGNAL(finished(int)), SLOT(dialogClosed()));
 
     // process events so that qt shows the window
