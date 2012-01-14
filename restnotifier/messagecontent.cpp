@@ -28,14 +28,22 @@ void MessageContent::setImage()
 
     // check that image is not bigger than screen resolution
     QSize imageSize = image.size();
+    QWidget *parent = parentWidget();
     int screenWidth = QApplication::desktop()->width();
     int screenHeight = QApplication::desktop()->height();
+    int widthPadding = width() + 50;
+    int heightPadding = height() + 100;
+    if (parent)
+    {
+        widthPadding += parent->width();
+        heightPadding += parent->height();
+    }
     if ((imageSize.height() >= screenHeight) ||
             (imageSize.width() >= screenWidth))
     {
         // let's scale it
-        image = image.scaled((screenWidth - width() - 50),
-                             (screenHeight - height() - 50),
+        image = image.scaled((screenWidth - widthPadding),
+                             (screenHeight - heightPadding),
                              Qt::KeepAspectRatio);
     }
 

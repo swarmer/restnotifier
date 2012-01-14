@@ -14,7 +14,7 @@ class RestDialog : public QDialog
 
 // PRIVATE
     QSharedPointer<Ui::RestDialog> ui_restDialog;
-    QSharedPointer<MessageContent> messageContent;
+    MessageContent *messageContent;
 
 // PUBLIC
 public:

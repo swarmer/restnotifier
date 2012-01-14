@@ -10,10 +10,10 @@ RestDialog::RestDialog(QWidget *parent) :
     ui_restDialog = QSharedPointer<Ui::RestDialog>(new Ui::RestDialog());
     ui_restDialog->setupUi(this);
 
-    messageContent = QSharedPointer<MessageContent>(new MessageContent);
+    messageContent = new MessageContent(this);
 
     QVBoxLayout *vlayout = dynamic_cast<QVBoxLayout*>(layout());
-    vlayout->insertWidget(0, messageContent.data());
+    vlayout->insertWidget(0, messageContent);
     adjustSize();
 }
 
