@@ -20,9 +20,9 @@ LockingRestDialog::LockingRestDialog(QWidget *parent) :
     QDialog(parent)
 {
     // gui
-    messageContent = new MessageContent(this);
     ui = QSharedPointer<Ui::LockingRestDialog>(new Ui::LockingRestDialog);
     ui->setupUi(this);
+    messageContent = new MessageContent(this);
 
     Qt::WindowFlags flags = windowFlags();
     setWindowFlags(flags | Qt::WindowStaysOnTopHint);
@@ -86,6 +86,9 @@ void LockingRestDialog::lockScreen()
     Window wnd = winId();
     XGrabKeyboard(display, wnd, False,
                   GrabModeAsync, GrabModeAsync, CurrentTime);
+    XGrabPointer(display, wnd, False,
+                 NoEventMask, GrabModeSync, GrabModeSync,
+                 None, None, CurrentTime);
 // ^ linux
 
 // windows
@@ -103,6 +106,7 @@ void LockingRestDialog::unlockScreen()
     QX11Info xinfo = x11Info();
     Display *display = xinfo.display();
     XUngrabKeyboard(display, CurrentTime);
+    XUngrabPointer(display, CurrentTime);
 // ^ linux
 
 // windows
