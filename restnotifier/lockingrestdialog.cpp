@@ -14,7 +14,7 @@ LockingRestDialog::LockingRestDialog(QWidget *parent) :
     QDialog(parent)
 {
     // gui
-    messageContent = QSharedPointer<MessageContent>(new MessageContent);
+    messageContent = new MessageContent(this);
     ui = QSharedPointer<Ui::LockingRestDialog>(new Ui::LockingRestDialog);
     ui->setupUi(this);
     setWindowState(Qt::WindowFullScreen);

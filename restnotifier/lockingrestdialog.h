@@ -25,7 +25,7 @@ public:
 // PRIVATE
 private:
     QEventLoop *eventLoop;
-    QSharedPointer<MessageContent> messageContent;
+    MessageContent *messageContent;
     QSharedPointer<Ui::LockingRestDialog> ui;
     QTimer timer;
     Settings settings;

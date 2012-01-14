@@ -70,7 +70,7 @@ void Settings::setLockScreen(bool lock)
 
 QTime Settings::lockTime() const
 {
-    return qsettings.value("lock_time", QTime(0, 5)).toTime();
+    return qsettings.value("lock_time", QTime(0, 1)).toTime();
 }
 
 void Settings::setLockTime(QTime lockTime)
