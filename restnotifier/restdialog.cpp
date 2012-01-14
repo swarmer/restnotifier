@@ -1,6 +1,3 @@
-#include <QPixmap>
-#include <QDesktopWidget>
-
 #include "restdialog.h"
 
 
@@ -13,37 +10,11 @@ RestDialog::RestDialog(QWidget *parent) :
     ui_restDialog = QSharedPointer<Ui::RestDialog>(new Ui::RestDialog());
     ui_restDialog->setupUi(this);
 
-    // set message
-    QString message = settings.message();
-    ui_restDialog->messageLabel->setText(message);
+    messageContent = new MessageContent(this);
 
-    // possibly set image
-    if (settings.useImage())
-        setImage();
-
-    activateWindow();
-}
-
-void RestDialog::setImage()
-{
-    QPixmap image(settings.imagePath());
-    if (image.isNull())
-        return;
-
-    // check that image is not bigger than screen resolution
-    QSize imageSize = image.size();
-    int screenWidth = QApplication::desktop()->width();
-    int screenHeight = QApplication::desktop()->height();
-    if ((imageSize.height() >= screenHeight) ||
-            (imageSize.width() >= screenWidth))
-    {
-        // let's scale it
-        image = image.scaled((screenWidth - width() - 50),
-                             (screenHeight - height() - 50),
-                             Qt::KeepAspectRatio);
-    }
-
-    ui_restDialog->imageLabel->setPixmap(image);
+    QVBoxLayout *vlayout = dynamic_cast<QVBoxLayout*>(layout());
+    vlayout->insertWidget(0, messageContent);
+    adjustSize();
 }
 
 bool RestDialog::isPostponed() const

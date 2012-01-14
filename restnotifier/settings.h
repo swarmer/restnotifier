@@ -25,14 +25,17 @@ public:
     QString message() const;
     void setMessage(const QString& message);
 
-    MessageType messageType() const;
-    void setMessageType(MessageType mt);
-
     bool useImage() const;
     void setUseImage(bool use);
 
     QString imagePath() const;
     void setImagePath(const QString& path);
+
+    bool lockScreen() const;
+    void setLockScreen(bool lock);
+
+    QTime lockTime() const;
+    void setLockTime(QTime lockTime);
 
     QString language() const;
     void setLanguage(const QString& language);

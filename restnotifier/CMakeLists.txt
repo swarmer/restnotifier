@@ -20,19 +20,25 @@ set(restnotifier_SOURCES
         trayicon.cpp
         settingsdialog.cpp
         restdialog.cpp
+        lockingrestdialog.cpp
         settings.cpp
         idletime.c
+        messagecontent.cpp
         restnotifier.rc)
 
 set(restnotifier_HEADERS
         trayicon.h
         settingsdialog.h
         restdialog.h
-        settings.h)
+        lockingrestdialog.h
+        settings.h
+        messagecontent.h)
 
 set(restnotifier_FORMS
         settingsdialog.ui
-        restdialog.ui)
+        restdialog.ui
+        messagecontent.ui
+        lockingrestdialog.ui)
 
 set(restnotifier_RESOURCES
         icons.qrc)
@@ -58,7 +64,7 @@ if(MINGW)
 endif()
 
 # Set strict compiler flags if possible
-foreach(FLAG -Wall -Wextra -Werror)
+foreach(FLAG -Wall -Wextra)
     CHECK_CXX_COMPILER_FLAG(${FLAG} CXX_OK)
     CHECK_C_COMPILER_FLAG(${FLAG} C_OK)
     if(${CXX_OK} AND ${C_OK})

@@ -25,6 +25,7 @@ class SettingsDialog : public QDialog
     void loadMessageSettings();
     void loadIntervalSettings();
     void loadSoundSettings();
+    void loadLockSettings();
 
     // saving functions
     void saveLanguageSettings();
@@ -33,6 +34,7 @@ class SettingsDialog : public QDialog
     void saveMessageSettings();
     void saveIntervalSettings();
     void saveSoundSettings();
+    void saveLockSettings();
 
 private slots:
     void saveSettings();

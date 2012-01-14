@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>275</width>
-    <height>130</height>
+    <width>224</width>
+    <height>82</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -30,26 +30,6 @@
     <normaloff>:/icons/restnotifier.png</normaloff>:/icons/restnotifier.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="messageLabel">
-     <property name="text">
-      <string>It's time to rest</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="imageLabel">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
    <item>
     <spacer name="verticalSpacer_2">
      <property name="orientation">

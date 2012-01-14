@@ -6,6 +6,7 @@
 #include "trayicon.h"
 #include "settingsdialog.h"
 #include "restdialog.h"
+#include "lockingrestdialog.h"
 
 extern "C" int getIdleSecs(); // idletime.c
 
@@ -45,14 +46,6 @@ void TrayIcon::showSettings()
     }
 }
 
-void TrayIcon::showTrayMessage()
-{
-    QString message = settings.message();
-    if (message.size() > 100)
-        message = "";
-    showMessage("Restnotifier", message, Information);
-}
-
 // returns true if message was postponed
 bool TrayIcon::showDialogMessage()
 {
@@ -61,6 +54,13 @@ bool TrayIcon::showDialogMessage()
     bool postpone = restDialog->isPostponed();
     delete restDialog;
     return postpone;
+}
+
+void TrayIcon::showLockingMessage()
+{
+    QPointer<LockingRestDialog> lockingRestDialog(new LockingRestDialog);
+    lockingRestDialog->executeLocking();
+    delete lockingRestDialog;
 }
 
 void TrayIcon::playSound()
@@ -83,18 +83,10 @@ void TrayIcon::showRestMessage()
         if (settings.useSound())
             playSound();
 
-        // usual message
-        MessageType mt = settings.messageType();
-        switch (mt)
-        {
-        default:
-        case MT_TRAY:
-            showTrayMessage();
-            break;
-        case MT_DIALOG:
+        if (settings.lockScreen())
+            showLockingMessage();
+        else
             postpone = showDialogMessage();
-            break;
-        }
     }
 
     // postpone if needed

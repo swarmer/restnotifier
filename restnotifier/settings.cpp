@@ -35,21 +35,6 @@ void Settings::setMessage(const QString& message)
 }
 
 
-MessageType Settings::messageType() const
-{
-    bool ok;
-    MessageType mt = (MessageType)(qsettings.value("m_type", 0).toInt(&ok));
-    if (!ok)
-        mt = MT_TRAY;
-    return mt;
-}
-
-void Settings::setMessageType(MessageType mt)
-{
-    qsettings.setValue("m_type", (int)mt);
-}
-
-
 bool Settings::useImage() const
 {
     return qsettings.value("use_img", false).toBool();
@@ -69,6 +54,28 @@ QString Settings::imagePath() const
 void Settings::setImagePath(const QString& path)
 {
     qsettings.setValue("img_path", path);
+}
+
+
+bool Settings::lockScreen() const
+{
+    return qsettings.value("lock_screen", false).toBool();
+}
+
+void Settings::setLockScreen(bool lock)
+{
+    qsettings.setValue("lock_screen", lock);
+}
+
+
+QTime Settings::lockTime() const
+{
+    return qsettings.value("lock_time", QTime(0, 1)).toTime();
+}
+
+void Settings::setLockTime(QTime lockTime)
+{
+    qsettings.setValue("lock_time", lockTime);
 }
 
 
