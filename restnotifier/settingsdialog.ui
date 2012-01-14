@@ -51,6 +51,13 @@
         <property name="accelerated">
          <bool>true</bool>
         </property>
+        <property name="time">
+         <time>
+          <hour>1</hour>
+          <minute>0</minute>
+          <second>0</second>
+         </time>
+        </property>
         <property name="maximumTime">
          <time>
           <hour>23</hour>
@@ -61,15 +68,15 @@
         <property name="minimumTime">
          <time>
           <hour>0</hour>
-          <minute>1</minute>
-          <second>0</second>
+          <minute>0</minute>
+          <second>1</second>
          </time>
         </property>
         <property name="currentSection">
          <enum>QDateTimeEdit::MinuteSection</enum>
         </property>
         <property name="displayFormat">
-         <string>h:mm</string>
+         <string>h:mm:ss</string>
         </property>
         <property name="currentSectionIndex">
          <number>1</number>
@@ -138,9 +145,16 @@
           <property name="accelerated">
            <bool>true</bool>
           </property>
+          <property name="time">
+           <time>
+            <hour>0</hour>
+            <minute>1</minute>
+            <second>0</second>
+           </time>
+          </property>
           <property name="maximumTime">
            <time>
-            <hour>23</hour>
+            <hour>0</hour>
             <minute>59</minute>
             <second>59</second>
            </time>
@@ -249,7 +263,7 @@
           </property>
           <property name="maximumTime">
            <time>
-            <hour>23</hour>
+            <hour>0</hour>
             <minute>59</minute>
             <second>59</second>
            </time>
@@ -265,10 +279,10 @@
            <enum>QDateTimeEdit::MinuteSection</enum>
           </property>
           <property name="displayFormat">
-           <string>m:ss</string>
+           <string>h:mm:ss</string>
           </property>
           <property name="currentSectionIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
          </widget>
         </item>

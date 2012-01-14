@@ -5,21 +5,15 @@
 
 QTime Settings::interval() const
 {
-    bool ok;
-    int intervalMinutes = qsettings.value("interval", 60).toInt(&ok);
-    if (!ok)
-        intervalMinutes = 60;
-    int hours, minutes;
-    hours = intervalMinutes / 60;
-    minutes = intervalMinutes % 60;
-    QTime intervalTime(hours, minutes);
-    return intervalTime;
+    QTime interval = qsettings.value("interval", QTime(1, 0)).toTime();
+    if (interval.isNull())
+        interval = QTime(1, 0);
+    return interval;
 }
 
 void Settings::setInterval(QTime interval)
 {
-    int intervalMinutes = (interval.hour() * 60) + interval.minute();
-    qsettings.setValue("interval", intervalMinutes);
+    qsettings.setValue("interval", interval);
 }
 
 
@@ -112,24 +106,15 @@ void Settings::setCheckIdle(bool check)
 
 QTime Settings::idleLimit() const
 {
-    bool ok;
-    int seconds = qsettings.value("idle_limit", 60).toInt(&ok);
-    if (!ok)
-        seconds = 60;
-    int hours, minutes;
-    hours = seconds / 3600;
-    seconds %= 3600;
-    minutes = seconds / 60;
-    seconds %= 60;
-    QTime idleTime(hours, minutes, seconds);
-    return idleTime;
+    QTime idleLimit = qsettings.value("idle_limit", QTime(0, 1)).toTime();
+    if (idleLimit.isNull())
+        idleLimit = QTime(0, 1);
+    return idleLimit;
 }
 
 void Settings::setIdleLimit(QTime idleLimit)
 {
-    int seconds = (idleLimit.hour() * 3600) + (idleLimit.minute() * 60) +
-            idleLimit.second();
-    qsettings.setValue("idle_limit", seconds);
+    qsettings.setValue("idle_limit", idleLimit);
 }
 
 
