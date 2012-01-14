@@ -3,11 +3,17 @@
 
 #include "lockingrestdialog.h"
 
+// headers
 #if defined Q_WS_X11
 #include <QX11Info>
 #include <X11/Xlib.h>
 
+#elif defined Q_WS_WIN
+#include <windows.h>
+#include <winable.h>
+
 #endif
+// ^ headers
 
 
 LockingRestDialog::LockingRestDialog(QWidget *parent) :
@@ -82,6 +88,11 @@ void LockingRestDialog::lockScreen()
                   GrabModeAsync, GrabModeAsync, CurrentTime);
 // ^ linux
 
+// windows
+#elif defined Q_WS_WIN
+    BlockInput(TRUE);
+// ^ windows
+
 #endif
 }
 
@@ -93,6 +104,11 @@ void LockingRestDialog::unlockScreen()
     Display *display = xinfo.display();
     XUngrabKeyboard(display, CurrentTime);
 // ^ linux
+
+// windows
+#elif defined Q_WS_WIN
+    BlockInput(FALSE);
+// ^ windows
 
 #endif
 }
