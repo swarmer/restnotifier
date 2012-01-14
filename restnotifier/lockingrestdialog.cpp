@@ -7,6 +7,7 @@
 #if defined Q_WS_X11
 #include <QX11Info>
 #include <X11/Xlib.h>
+#include <unistd.h>
 
 #elif defined Q_WS_WIN
 #include <windows.h>
@@ -81,11 +82,20 @@ void LockingRestDialog::lockScreen()
 {
 //linux
 #if defined Q_WS_X11
-    QX11Info xinfo = x11Info();
-    Display *display = xinfo.display();
+    Display *display = QX11Info::display();
     Window wnd = winId();
-    XGrabKeyboard(display, wnd, False,
-                  GrabModeAsync, GrabModeAsync, CurrentTime);
+    int code;
+    int tries = 0;
+    while (tries < 10)
+    {
+        ++tries;
+        code = XGrabKeyboard(display, wnd, False,
+                      GrabModeAsync, GrabModeAsync, CurrentTime);
+        if (code == 3)
+            usleep(10000);
+        else
+            break;
+    }
     XGrabPointer(display, wnd, False,
                  NoEventMask, GrabModeSync, GrabModeSync,
                  None, None, CurrentTime);
