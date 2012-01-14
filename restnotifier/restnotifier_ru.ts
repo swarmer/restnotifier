@@ -2,6 +2,40 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="ru_RU">
 <context>
+    <name>LockingRestDialog</name>
+    <message>
+        <location filename="lockingrestdialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="lockingrestdialog.ui" line="38"/>
+        <source>05:00</source>
+        <translation>05:00</translation>
+    </message>
+</context>
+<context>
+    <name>MessageContent</name>
+    <message>
+        <location filename="messagecontent.ui" line="14"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="messagecontent.ui" line="25"/>
+        <source>It&apos;s time to rest</source>
+        <translation>Время отдохнуть</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="settings.cpp" line="29"/>
+        <source>It&apos;s time to rest</source>
+        <translation>Время отдохнуть</translation>
+    </message>
+</context>
+<context>
     <name>RestDialog</name>
     <message>
         <location filename="restdialog.ui" line="26"/>
@@ -9,13 +43,12 @@
         <translation>Restnotifier</translation>
     </message>
     <message>
-        <location filename="restdialog.ui" line="36"/>
         <source>It&apos;s time to rest</source>
         <oldsource>It&apos;s time to rest!</oldsource>
-        <translation>Время отдохнуть</translation>
+        <translation type="obsolete">Время отдохнуть</translation>
     </message>
     <message>
-        <location filename="restdialog.ui" line="72"/>
+        <location filename="restdialog.ui" line="52"/>
         <source>Remind me 5 minutes later</source>
         <translation>Напомнить через 5 минут</translation>
     </message>
@@ -48,53 +81,65 @@
         <translation>Сообщение</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="194"/>
         <source>Message type</source>
-        <translation>Вид сообщения</translation>
+        <translation type="obsolete">Вид сообщения</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="200"/>
         <source>System tray message</source>
-        <translation>Сообщение в трее</translation>
+        <translation type="obsolete">Сообщение в трее</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="207"/>
         <source>Dialog box</source>
-        <translation>Диалоговое окно</translation>
+        <translation type="obsolete">Диалоговое окно</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="217"/>
+        <location filename="settingsdialog.ui" line="296"/>
         <source>Play sound</source>
         <translation>Проигрывать звук</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="246"/>
+        <location filename="settingsdialog.ui" line="325"/>
         <source>Dialog box image</source>
         <translation>Изображение в диалоговом окне</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="236"/>
-        <location filename="settingsdialog.ui" line="265"/>
+        <location filename="settingsdialog.ui" line="315"/>
+        <location filename="settingsdialog.ui" line="344"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="275"/>
+        <location filename="settingsdialog.ui" line="194"/>
+        <source>Lock screen</source>
+        <translation>Заблокировать экран</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="206"/>
+        <source>Lock the screen for</source>
+        <translation>Заблокировать экран на</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="268"/>
+        <source>m:ss</source>
+        <translation>m:ss</translation>
+    </message>
+    <message>
+        <location filename="settingsdialog.ui" line="354"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="285"/>
+        <location filename="settingsdialog.ui" line="364"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message utf8="true">
-        <location filename="settingsdialog.ui" line="290"/>
+        <location filename="settingsdialog.ui" line="369"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="311"/>
+        <location filename="settingsdialog.ui" line="390"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -127,27 +172,26 @@ p, li { white-space: pre-wrap; }
         <translation>простоя</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="113"/>
         <source>It&apos;s time to rest</source>
-        <translation>Время отдохнуть</translation>
+        <translation type="obsolete">Время отдохнуть</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="242"/>
+        <location filename="settingsdialog.cpp" line="217"/>
         <source>Select image</source>
         <translation>Выберите изображение</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="243"/>
+        <location filename="settingsdialog.cpp" line="218"/>
         <source>Image files (*.png *.bmp *.jpeg *.jpg)</source>
         <translation>Файлы изображений (*.png *.bmp *.jpeg *.jpg)</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="250"/>
+        <location filename="settingsdialog.cpp" line="225"/>
         <source>Select sound</source>
         <translation>Выберите звук</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="251"/>
+        <location filename="settingsdialog.cpp" line="226"/>
         <source>Sound file (*.wav)</source>
         <translation>Звуковой файл (*.wav)</translation>
     </message>
