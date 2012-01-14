@@ -19,7 +19,7 @@ LockingRestDialog::LockingRestDialog(QWidget *parent) :
     ui->setupUi(this);
     setWindowState(Qt::WindowFullScreen);
     QVBoxLayout *vlayout = dynamic_cast<QVBoxLayout*>(layout());
-    vlayout->insertWidget(0, messageContent.data());
+    vlayout->insertWidget(0, messageContent);
     adjustSize();
 
     eventLoop = new QEventLoop(this);
