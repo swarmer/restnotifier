@@ -56,11 +56,13 @@ bool TrayIcon::showDialogMessage()
     return postpone;
 }
 
-void TrayIcon::showLockingMessage()
+bool TrayIcon::showLockingMessage()
 {
     QPointer<LockingRestDialog> lockingRestDialog(new LockingRestDialog);
     lockingRestDialog->executeLocking();
+    bool postpone = lockingRestDialog->isPostponed();
     delete lockingRestDialog;
+    return postpone;
 }
 
 void TrayIcon::playSound()
@@ -84,13 +86,13 @@ void TrayIcon::showRestMessage()
             playSound();
 
         if (settings.lockScreen())
-            showLockingMessage();
+            postpone = showLockingMessage();
         else
             postpone = showDialogMessage();
     }
 
     // postpone if needed
-    const int postponeTime = 60000 * 5; // 5 min to msec
+    const int postponeTime = 60000 * 5; //to msec
     if (postpone)
         timer->start(postponeTime);
     else

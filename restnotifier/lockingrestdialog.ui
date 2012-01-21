@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>83</width>
-    <height>46</height>
+    <width>379</width>
+    <height>57</height>
    </rect>
   </property>
   <property name="cursor">
@@ -29,6 +29,21 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Press Ctrl+P to show this dialog 5 minutes later</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="timeLeftLabel">

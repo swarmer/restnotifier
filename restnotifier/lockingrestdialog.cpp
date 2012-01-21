@@ -1,5 +1,6 @@
 #include <QShowEvent>
 #include <QLayout>
+#include <QShortcut>
 
 #include "lockingrestdialog.h"
 
@@ -35,6 +36,9 @@ LockingRestDialog::LockingRestDialog(QWidget *parent) :
     eventLoop = new QEventLoop(this);
     timeLeft = settings.lockTime();
     updateTimeLeft();
+
+    postponed = false;
+    postponeShortcut = new QShortcut(QKeySequence("Ctrl+P"), this, SLOT(postpone()));
 
     // setup timer
     timer.setInterval(1000);
@@ -78,6 +82,17 @@ void LockingRestDialog::dialogClosed()
     eventLoop->exit();
 }
 
+void LockingRestDialog::postpone()
+{
+    postponed = true;
+    accept();
+}
+
+bool LockingRestDialog::isPostponed() const
+{
+    return postponed;
+}
+
 void LockingRestDialog::lockScreen()
 {
 //linux
@@ -97,7 +112,7 @@ void LockingRestDialog::lockScreen()
             break;
     }
     XGrabPointer(display, wnd, False,
-                 NoEventMask, GrabModeSync, GrabModeSync,
+                 NoEventMask, GrabModeAsync, GrabModeAsync,
                  None, None, CurrentTime);
 // ^ linux
 
