@@ -31,13 +31,10 @@ void MessageContent::setImage()
     QWidget *parent = parentWidget();
     int screenWidth = QApplication::desktop()->width();
     int screenHeight = QApplication::desktop()->height();
-    int widthPadding = width() + 50;
+    int widthPadding = 100;
     int heightPadding = height() + 100;
     if (parent)
-    {
-        widthPadding += parent->width();
         heightPadding += parent->height();
-    }
     if ((imageSize.height() >= screenHeight) ||
             (imageSize.width() >= screenWidth))
     {
