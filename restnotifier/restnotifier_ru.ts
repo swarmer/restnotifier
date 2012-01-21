@@ -4,12 +4,17 @@
 <context>
     <name>LockingRestDialog</name>
     <message>
-        <location filename="lockingrestdialog.ui" line="14"/>
+        <location filename="lockingrestdialog.ui" line="17"/>
         <source>Dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="lockingrestdialog.ui" line="38"/>
+        <location filename="lockingrestdialog.ui" line="41"/>
+        <source>Press Ctrl+P to show this dialog 5 minutes later</source>
+        <translation>Нажмите Ctrl+P чтобы показать этот диалог через 5 минут</translation>
+    </message>
+    <message>
+        <location filename="lockingrestdialog.ui" line="56"/>
         <source>05:00</source>
         <translation>05:00</translation>
     </message>
@@ -30,7 +35,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="settings.cpp" line="29"/>
+        <location filename="settings.cpp" line="23"/>
         <source>It&apos;s time to rest</source>
         <translation>Время отдохнуть</translation>
     </message>
@@ -71,12 +76,11 @@
         <translation>Интервал</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="72"/>
         <source>h:mm</source>
-        <translation>h:mm</translation>
+        <translation type="obsolete">h:mm</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="82"/>
+        <location filename="settingsdialog.ui" line="89"/>
         <source>Message</source>
         <translation>Сообщение</translation>
     </message>
@@ -93,53 +97,52 @@
         <translation type="obsolete">Диалоговое окно</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="296"/>
+        <location filename="settingsdialog.ui" line="310"/>
         <source>Play sound</source>
         <translation>Проигрывать звук</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="325"/>
+        <location filename="settingsdialog.ui" line="339"/>
         <source>Dialog box image</source>
         <translation>Изображение в диалоговом окне</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="315"/>
-        <location filename="settingsdialog.ui" line="344"/>
+        <location filename="settingsdialog.ui" line="329"/>
+        <location filename="settingsdialog.ui" line="358"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="194"/>
+        <location filename="settingsdialog.ui" line="208"/>
         <source>Lock screen</source>
         <translation>Заблокировать экран</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="206"/>
+        <location filename="settingsdialog.ui" line="220"/>
         <source>Lock the screen for</source>
         <translation>Заблокировать экран на</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="268"/>
         <source>m:ss</source>
-        <translation>m:ss</translation>
+        <translation type="obsolete">m:ss</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="354"/>
+        <location filename="settingsdialog.ui" line="368"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="364"/>
+        <location filename="settingsdialog.ui" line="378"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message utf8="true">
-        <location filename="settingsdialog.ui" line="369"/>
+        <location filename="settingsdialog.ui" line="383"/>
         <source>Русский</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="390"/>
+        <location filename="settingsdialog.ui" line="404"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -152,22 +155,24 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Требуется перезапуск&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="105"/>
+        <location filename="settingsdialog.ui" line="112"/>
         <source>Idle limit</source>
         <translation>Лимит простоя</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="114"/>
+        <location filename="settingsdialog.ui" line="121"/>
         <source>Disable messages after</source>
         <translation>Отключить напоминания после</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="159"/>
+        <location filename="settingsdialog.ui" line="79"/>
+        <location filename="settingsdialog.ui" line="173"/>
+        <location filename="settingsdialog.ui" line="282"/>
         <source>h:mm:ss</source>
         <translation>h:mm:ss</translation>
     </message>
     <message>
-        <location filename="settingsdialog.ui" line="169"/>
+        <location filename="settingsdialog.ui" line="183"/>
         <source>idle time</source>
         <translation>простоя</translation>
     </message>
